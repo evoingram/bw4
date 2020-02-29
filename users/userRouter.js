@@ -1,8 +1,9 @@
 const router = require('express').Router();
 
 const Users = require('./userModel.js');
+const restricted = require('../auth/restriction.js');
 
-router.get('/', (req, res) => {
+router.get('/', restricted, (req, res) => {
 	Users.find()
 		.then(users => {
 			res.status(200).json(users);
@@ -10,7 +11,7 @@ router.get('/', (req, res) => {
 		.catch(err => res.send(err));
 });
 
-router.get('/:id', (req, res) => {
+router.get('/:id', restricted, (req, res) => {
 	const id = req.params.id;
 	if (!id) {
 		res.status(404).json({ message: 'The user with the specified id does not exist.' });
@@ -25,7 +26,7 @@ router.get('/:id', (req, res) => {
 	}
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', restricted, (req, res) => {
 	const id = req.params.id;
 	if (!id) {
 		res.status(404).json({ message: 'The user with the specified ID does not exist.' });
