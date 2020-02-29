@@ -1,0 +1,8 @@
+{
+  "name": "bw4",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/evoingram/bw4.git",
+  "author": "Erica L. Ingram <inquiries@aquoco.co>",
+  "license": "MIT"
+}
