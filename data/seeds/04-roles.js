@@ -1,5 +1,5 @@
 exports.seed = function(knex) {
-	return knex('contexts').insert([
+	return knex('roles').insert([
 		{
 			rolesid: 1,
 			rolename: 'helper'

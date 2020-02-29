@@ -1,5 +1,5 @@
 exports.seed = function(knex) {
-	return knex('resources').insert([
+	return knex('statuses').insert([
 		{
 			statusesid: 1,
 			status: 'queue'
