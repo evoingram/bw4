@@ -9,7 +9,7 @@ function getJwt(username) {
 		username
 	};
 
-	const secret = process.env.JWT_SECRET || 'Let me tell you a myth about secrets..';
+	const secret = process.env.JWT_SECRET || 'Let me tell you a myth about secrets.';
 
 	const options = {
 		expiresIn: '1d'
