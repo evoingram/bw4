@@ -1,5 +1,5 @@
 exports.seed = function(knex) {
-	return knex('tasks').insert([
+	return knex('tickets').insert([
 		{
 			ticketsid: 1,
 			statusesid: 3,
