@@ -16,21 +16,24 @@ exports.up = function(knex) {
 		})
 		.createTable('tickets', users => {
 			users.increments('ticketsid');
-			tbl.integer('statusesid')
+			users
+				.integer('statusesid')
 				.unsigned()
 				.notNullable()
 				.references('statusesid')
 				.inTable('statuses')
 				.onUpdate('CASCADE')
 				.onDelete('CASCADE');
-			tbl.integer('helperid')
+			users
+				.integer('helperid')
 				.unsigned()
 				.notNullable()
 				.references('usersid')
 				.inTable('users')
 				.onUpdate('CASCADE')
 				.onDelete('CASCADE');
-			tbl.integer('studentid')
+			users
+				.integer('studentid')
 				.unsigned()
 				.notNullable()
 				.references('usersid')
@@ -57,14 +60,16 @@ exports.up = function(knex) {
 				.unique();
 		})
 		.createTable('userroles', users => {
-			tbl.integer('usersid')
+			users
+				.integer('usersid')
 				.unsigned()
 				.notNullable()
 				.references('usersid')
 				.inTable('users')
 				.onUpdate('CASCADE')
 				.onDelete('CASCADE');
-			tbl.integer('rolesid')
+			users
+				.integer('rolesid')
 				.unsigned()
 				.notNullable()
 				.references('rolesid')

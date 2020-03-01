@@ -1,5 +1,6 @@
 // Update with your config settings.
-
+// knex migrate:latest
+// knex seed:run
 module.exports = {
 	development: {
 		client: 'pg',
