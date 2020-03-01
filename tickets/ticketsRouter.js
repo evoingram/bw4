@@ -138,7 +138,7 @@ router.delete('/:ticketsid', restricted, (req, res) => {
             INSERT INTO Tickets (statusesid, studentid, title, description, category) VALUES ("", "", "", "", "");
 */
 
-router.post('/', (req, res) => {
+router.post('/', restricted, (req, res) => {
 	const newTicket = req.body;
 
 	Tickets.add(newTicket)
@@ -147,6 +147,39 @@ router.post('/', (req, res) => {
 		})
 		.catch(err => {
 			res.status(500).json({ message: 'Failed to create new ticket' });
+		});
+});
+
+/*
+-- As a helper I want to be able to assign a ticket to myself by clicking a "help student" button.
+    -- SQL to update ticket.helperid to current helperid
+        UPDATE Tickets.helperid = "" && Ticket.status="" WHERE Tickets.ticketsid="";
+*/
+
+/*
+
+-- As a helper I want to be able to mark the ticket as "resolved", or re-assign the ticket back to the queue if I cannot resolve the ticket.
+    -- SQL to update ticket.status to "resolved" or "queue" && ticket.helperid=""
+        UPDATE Tickets.helperid = "" && Ticket.status="resolved" WHERE Tickets.ticketsid="";
+        UPDATE Tickets.helperid = "" && Ticket.status="queue" WHERE Tickets.ticketsid="";
+
+*/
+router.put('/:ticketsid', restricted, (req, res) => {
+	const ticketsid = req.params.ticketsid;
+	const helperid = req.body.helperid;
+	const ticketStatus = req.body.status;
+	const updatedTicket = { helperid: helperid, status: ticketStatus };
+
+	Tickets.update(updatedTicket, ticketsid)
+		.then(ticket => {
+			if (ticket) {
+				res.json(ticket);
+			} else {
+				res.status(404).json({ message: 'Could not find ticket with given id' });
+			}
+		})
+		.catch(err => {
+			res.status(500).json({ message: 'Failed to update ticket' });
 		});
 });
 

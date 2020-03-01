@@ -42,7 +42,7 @@ How to get a three:
 
 - [X] Make it so a user can be both a student and a helper.
 
-- [X] The project has end to end tests using a test database.
+- [ ] The project has end to end tests using a test database.
 	https://learning.postman.com/docs/postman/api-documentation/documenting-your-api/
 
 - [X] Student added authorization and authentication services. 

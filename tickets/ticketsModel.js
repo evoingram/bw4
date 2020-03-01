@@ -29,6 +29,7 @@ function find() {
 */
 // get list of tickets by studentid
 // SELECT * FROM Tickets WHERE Tickets.studentid=studentid;
+
 function findBy(filter) {
 	return db('tickets').where(filter);
 }
@@ -64,6 +65,21 @@ function findById(ticketsid) {
 		.where({ ticketsid: ticketsid })
 		.first();
 }
+
+/*
+-- As a helper I want to be able to assign a ticket to myself by clicking a "help student" button.
+    -- SQL to update ticket.helperid to current helperid
+        UPDATE Tickets.helperid = "" && Ticket.status="" WHERE Tickets.ticketsid="";
+*/
+
+/*
+
+-- As a helper I want to be able to mark the ticket as "resolved", or re-assign the ticket back to the queue if I cannot resolve the ticket.
+    -- SQL to update ticket.status to "resolved" or "queue" && ticket.helperid=""
+        UPDATE Tickets.helperid = "" && Ticket.status="resolved" WHERE Tickets.ticketsid="";
+        UPDATE Tickets.helperid = "" && Ticket.status="queue" WHERE Tickets.ticketsid="";
+
+*/
 
 // update ticket
 function update(ticketsid, ticket) {
