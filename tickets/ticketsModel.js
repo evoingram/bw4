@@ -9,10 +9,10 @@ module.exports = {
 	remove
 };
 
+//  .join(SELECT Status from Statuses WHERE Statuses.statusesid = tickets.id) AS "status")
 function find() {
-	return db('tickets').select('ticketsid', 'username', 'email');
+	return db('tickets').select('ticketsid', 'title', 'description', 'category');
 }
-
 /*
 -- Allow the ability to subscribe to the Queue in slack to be notified if someone opens a ticket.
 	-- SQL to get list of tickets 
@@ -34,19 +34,20 @@ function findBy(filter) {
 }
 
 /*
-        -- SQL to insert into Tickets newTicket
-            INSERT INTO Tickets (statusesid, studentid, title, description, category) VALUES ("", "", "", "", "");
+	-- SQL to insert into Tickets newTicket
+		INSERT INTO Tickets (statusesid, studentid, title, description, category) VALUES ("", "", "", "", "");
 */
 /*
--- Build an integrated slack-bot that allows students to submit help tickets through slack. 
-        -- SQL to insert into Tickets newTicket
-            INSERT INTO Tickets (statusesid, studentid, title, description, category) VALUES ("", "", "", "", "");
+	-- Build an integrated slack-bot that allows students to submit help tickets through slack. 
+			-- SQL to insert into Tickets newTicket
+				INSERT INTO Tickets (statusesid, studentid, title, description, category) VALUES ("", "", "", "", "");
 */
+
 // As a student I want to be able to create a new help ticket with a title, description, what I've tried and a category (i.e. React).
 // INSERT INTO Tickets (statusesid, studentid, title, description, category) VALUES ("", "", "", "", "");
 
-async function add(user) {
-	const [ticketsid] = await db('tickets').insert(user);
+async function add(ticket) {
+	const [ticketsid] = await db('tickets').insert(ticket);
 	return findById(ticketsid);
 }
 
@@ -57,18 +58,18 @@ async function add(user) {
 // view individual ticket
 // SELECT * FROM Tickets WHERE Tickets.ticketsid=ticketsid;
 
-function findById(id) {
+function findById(ticketsid) {
 	return db('tickets')
-		.select('ticketsid', 'username', 'email')
+		.select('ticketsid', 'title', 'description', 'category')
 		.where({ ticketsid: ticketsid })
 		.first();
 }
 
 // update ticket
-function update(ticketsid, user) {
+function update(ticketsid, ticket) {
 	return db('tickets')
 		.where('ticketsid', Number(ticketsid))
-		.update(user);
+		.update(ticket);
 }
 
 /*

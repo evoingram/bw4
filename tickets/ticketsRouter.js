@@ -1,22 +1,23 @@
 const router = require('express').Router();
 
-const Users = require('./ticketsModel.js');
+const Tickets = require('./ticketsModel.js');
 const restricted = require('../auth/restriction.js');
 
 // get list of all tickets
 router.get('/', restricted, (req, res) => {
-	Users.find()
-		.then(users => {
-			res.status(200).json(users);
+	Tickets.find()
+		.then(tickets => {
+			res.status(200).json(tickets);
 		})
 		.catch(err => res.send(err));
 });
+
 // get list of tickets by studentid
 // SELECT * FROM Tickets WHERE Tickets.studentid=studentid;
 router.get('/students/:studentid/tickets', restricted, (req, res) => {
-	Users.find()
-		.then(users => {
-			res.status(200).json(users);
+	Tickets.find()
+		.then(tickets => {
+			res.status(200).json(tickets);
 		})
 		.catch(err => res.send(err));
 });
@@ -33,16 +34,34 @@ router.get('/students/:studentid/tickets', restricted, (req, res) => {
 */
 
 router.get('/queue', restricted, (req, res) => {
-	Users.find()
-		.then(users => {
-			res.status(200).json(users);
+	Tickets.findBy({ statusesid: 1 })
+		.then(tickets => {
+			res.status(200).json(tickets);
 		})
 		.catch(err => res.send(err));
 });
+
 router.get('/tickets/queue', restricted, (req, res) => {
-	Users.find()
-		.then(users => {
-			res.status(200).json(users);
+	Tickets.findBy({ statusesid: 1 })
+		.then(tickets => {
+			res.status(200).json(tickets);
+		})
+		.catch(err => res.send(err));
+});
+
+// resolved tickets
+
+router.get('/resolved', restricted, (req, res) => {
+	Tickets.findBy({ statusesid: 2 })
+		.then(tickets => {
+			res.status(200).json(tickets);
+		})
+		.catch(err => res.send(err));
+});
+router.get('/tickets/resolved', restricted, (req, res) => {
+	Tickets.findBy({ statusesid: 2 })
+		.then(tickets => {
+			res.status(200).json(tickets);
 		})
 		.catch(err => res.send(err));
 });
@@ -52,6 +71,13 @@ router.get('/tickets/queue', restricted, (req, res) => {
         SELECT * FROM Tickets WHERE Tickets.helperid=helperid;
 
 */
+router.get('/helpers/:helperid', restricted, (req, res) => {
+	Tickets.findBy({ helperid: 2 })
+		.then(tickets => {
+			res.status(200).json(tickets);
+		})
+		.catch(err => res.send(err));
+});
 
 // view individual ticket
 // SELECT * FROM Tickets WHERE Tickets.ticketsid=ticketsid;
@@ -60,17 +86,17 @@ router.get('/tickets/queue', restricted, (req, res) => {
 	-- SQL to get individual ticket
 		SELECT * FROM Tickets WHERE Tickets.ticketsid=ticketsid;
 */
-router.get('/tickets/:id', restricted, (req, res) => {
-	const id = req.params.id;
-	if (!id) {
-		res.status(404).json({ message: 'The user with the specified id does not exist.' });
+router.get('/tickets/:ticketsid', restricted, (req, res) => {
+	const ticketsid = req.params.ticketsid;
+	if (!ticketsid) {
+		res.status(404).json({ message: 'The ticket with the specified id does not exist.' });
 	} else {
-		Users.findById(id)
-			.then(user => {
-				res.status(201).json(user);
+		Tickets.findById(ticketsid)
+			.then(ticket => {
+				res.status(201).json(ticket);
 			})
 			.catch(err => {
-				res.status(500).json({ message: 'The user information could not be retrieved.' });
+				res.status(500).json({ message: 'The ticket information could not be retrieved.' });
 			});
 	}
 });
@@ -80,17 +106,17 @@ router.get('/tickets/:id', restricted, (req, res) => {
 -- delete ticket
     DELETE FROM Tickets where Tickets.ticketsid='';
 */
-router.delete('/:id', restricted, (req, res) => {
-	const id = req.params.id;
-	if (!id) {
-		res.status(404).json({ message: 'The user with the specified ID does not exist.' });
+router.delete('/:ticketsid', restricted, (req, res) => {
+	const ticketsid = req.params.ticketsid;
+	if (!ticketsid) {
+		res.status(404).json({ message: 'The ticket with the specified ID does not exist.' });
 	}
-	Users.remove(id)
-		.then(user => {
-			res.json(user);
+	Tickets.remove(ticketsid)
+		.then(ticket => {
+			res.json(ticket);
 		})
 		.catch(err => {
-			res.status(500).json({ message: 'The user could not be removed' });
+			res.status(500).json({ message: 'The ticket could not be removed' });
 		});
 });
 
@@ -113,14 +139,14 @@ router.delete('/:id', restricted, (req, res) => {
 */
 
 router.post('/', (req, res) => {
-	const resourceData = req.body;
+	const newTicket = req.body;
 
-	Cohorts.addCohort(resourceData)
-		.then(cohort => {
-			res.status(201).json(cohort);
+	Tickets.add(newTicket)
+		.then(ticket => {
+			res.status(201).json(ticket);
 		})
 		.catch(err => {
-			res.status(500).json({ message: 'Failed to create new cohort' });
+			res.status(500).json({ message: 'Failed to create new ticket' });
 		});
 });
 
