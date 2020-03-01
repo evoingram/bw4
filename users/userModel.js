@@ -62,3 +62,36 @@ DELETE FROM Users where Users.usersid = '';
 -- add helper status
     INSERT INTO Userroles (usersid, rolesid) VALUES ('', '');
 */
+
+/*
+    -- to view all helpers: 
+        SELECT * FROM Users 		
+        JOIN Userroles ON Userroles.usersid=Users.usersId
+        JOIN Roles ON Userroles.rolesid=Roles.rolesid
+		WHERE Roles.role='helper'
+		ORDER BY Users.usersid;
+*/
+
+/*
+    -- to view all students: 
+        SELECT * FROM Users 		
+        JOIN Userroles ON Userroles.usersid=Users.usersId
+        JOIN Roles ON Userroles.rolesid=Roles.rolesid
+		WHERE Roles.role='student'
+		ORDER BY Users.usersid;
+*/
+
+/*
+    -- to view all students who are also helpers: 
+        SELECT * FROM Users 		
+        JOIN Userroles ON Userroles.usersid=Users.usersId
+        JOIN Roles ON Userroles.rolesid=Roles.rolesid
+		WHERE Roles.role='helper'
+        ORDER BY Users.usersid
+        UNION 
+        SELECT * FROM Users 		
+        JOIN Userroles ON Userroles.usersid=Users.usersId
+        JOIN Roles ON Userroles.rolesid=Roles.rolesid
+		WHERE Roles.role='student'
+        ORDER BY Users.usersid;
+*/

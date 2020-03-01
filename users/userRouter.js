@@ -112,4 +112,58 @@ router.put('/:cohortsid', (req, res) => {
 		});
 });
 
+/*
+    -- to view all helpers: 
+        SELECT * FROM Users 		
+        JOIN Userroles ON Userroles.usersid=Users.usersId
+        JOIN Roles ON Userroles.rolesid=Roles.rolesid
+		WHERE Roles.role='helper'
+		ORDER BY Users.usersid;
+*/
+
+router.get('/', restricted, (req, res) => {
+	Users.find()
+		.then(users => {
+			res.status(200).json(users);
+		})
+		.catch(err => res.send(err));
+});
+/*
+    -- to view all students: 
+        SELECT * FROM Users 		
+        JOIN Userroles ON Userroles.usersid=Users.usersId
+        JOIN Roles ON Userroles.rolesid=Roles.rolesid
+		WHERE Roles.role='student'
+		ORDER BY Users.usersid;
+		*/
+
+router.get('/', restricted, (req, res) => {
+	Users.find()
+		.then(users => {
+			res.status(200).json(users);
+		})
+		.catch(err => res.send(err));
+});
+/*
+    -- to view all students who are also helpers: 
+        SELECT * FROM Users 		
+        JOIN Userroles ON Userroles.usersid=Users.usersId
+        JOIN Roles ON Userroles.rolesid=Roles.rolesid
+		WHERE Roles.role='helper'
+        ORDER BY Users.usersid
+        UNION 
+        SELECT * FROM Users 		
+        JOIN Userroles ON Userroles.usersid=Users.usersId
+        JOIN Roles ON Userroles.rolesid=Roles.rolesid
+		WHERE Roles.role='student'
+        ORDER BY Users.usersid;
+*/
+router.get('/', restricted, (req, res) => {
+	Users.find()
+		.then(users => {
+			res.status(200).json(users);
+		})
+		.catch(err => res.send(err));
+});
+
 module.exports = router;

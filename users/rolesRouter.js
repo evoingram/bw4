@@ -1,50 +1,50 @@
 const router = require('express').Router();
 
-const Users = require('./rolesModel.js');
+const Roles = require('./rolesModel.js');
 const restricted = require('../auth/restriction.js');
 
-// get all users
+// get all roles
 router.get('/', restricted, (req, res) => {
-	Users.find()
-		.then(users => {
-			res.status(200).json(users);
+	Roles.find()
+		.then(roles => {
+			res.status(200).json(roles);
 		})
 		.catch(err => res.send(err));
 });
 
-// get individual user
-router.get('/:id', restricted, (req, res) => {
-	const id = req.params.id;
-	if (!id) {
-		res.status(404).json({ message: 'The user with the specified id does not exist.' });
+// get individual role
+router.get('/:rolesid', restricted, (req, res) => {
+	const rolesid = req.params.rolesid;
+	if (!rolesid) {
+		res.status(404).json({ message: 'The role with the specified id does not exist.' });
 	} else {
-		Users.findById(id)
-			.then(user => {
-				res.status(201).json(user);
+		Roles.findById(rolesid)
+			.then(role => {
+				res.status(201).json(role);
 			})
 			.catch(err => {
-				res.status(500).json({ message: 'The user information could not be retrieved.' });
+				res.status(500).json({ message: 'The role information could not be retrieved.' });
 			});
 	}
 });
 
 // update role
 
-router.put('/:cohortsid', (req, res) => {
-	const cohortsid = req.params.cohortsid;
-	const cohortName = req.body.cohort;
-	const updatedCohort = { cohortsid: cohortsid, cohort: cohortName };
+router.put('/:rolesid', restricted, (req, res) => {
+	const rolesid = req.params.rolesid;
+	const roleName = req.body.rolename;
+	const updatedRole = { rolename: roleName };
 
-	Cohorts.updateCohort(updatedCohort, cohortsid)
-		.then(cohort => {
-			if (cohort) {
-				res.json(cohort);
+	Roles.update(updatedRole, rolesid)
+		.then(role => {
+			if (role) {
+				res.json(role);
 			} else {
-				res.status(404).json({ message: 'Could not find cohort with given id' });
+				res.status(404).json({ message: 'Could not find role with given id' });
 			}
 		})
 		.catch(err => {
-			res.status(500).json({ message: 'Failed to update cohort' });
+			res.status(500).json({ message: 'Failed to update role' });
 		});
 });
 
@@ -52,68 +52,15 @@ router.put('/:cohortsid', (req, res) => {
 router.delete('/:id', restricted, (req, res) => {
 	const id = req.params.id;
 	if (!id) {
-		res.status(404).json({ message: 'The user with the specified ID does not exist.' });
+		res.status(404).json({ message: 'The role with the specified ID does not exist.' });
 	}
-	Users.remove(id)
-		.then(user => {
-			res.json(user);
+	Roles.remove(id)
+		.then(role => {
+			res.json(role);
 		})
 		.catch(err => {
-			res.status(500).json({ message: 'The user could not be removed' });
+			res.status(500).json({ message: 'The role could not be removed' });
 		});
 });
 
-/*
-    -- to view all helpers: 
-        SELECT * FROM Users 		
-        JOIN Userroles ON Userroles.usersid=Users.usersId
-        JOIN Roles ON Userroles.rolesid=Roles.rolesid
-		WHERE Roles.role='helper'
-		ORDER BY Users.usersid;
-*/
-
-router.get('/', restricted, (req, res) => {
-	Users.find()
-		.then(users => {
-			res.status(200).json(users);
-		})
-		.catch(err => res.send(err));
-});
-/*
-    -- to view all students: 
-        SELECT * FROM Users 		
-        JOIN Userroles ON Userroles.usersid=Users.usersId
-        JOIN Roles ON Userroles.rolesid=Roles.rolesid
-		WHERE Roles.role='student'
-		ORDER BY Users.usersid;
-		*/
-
-router.get('/', restricted, (req, res) => {
-	Users.find()
-		.then(users => {
-			res.status(200).json(users);
-		})
-		.catch(err => res.send(err));
-});
-/*
-    -- to view all students who are also helpers: 
-        SELECT * FROM Users 		
-        JOIN Userroles ON Userroles.usersid=Users.usersId
-        JOIN Roles ON Userroles.rolesid=Roles.rolesid
-		WHERE Roles.role='helper'
-        ORDER BY Users.usersid
-        UNION 
-        SELECT * FROM Users 		
-        JOIN Userroles ON Userroles.usersid=Users.usersId
-        JOIN Roles ON Userroles.rolesid=Roles.rolesid
-		WHERE Roles.role='student'
-        ORDER BY Users.usersid;
-*/
-router.get('/', restricted, (req, res) => {
-	Users.find()
-		.then(users => {
-			res.status(200).json(users);
-		})
-		.catch(err => res.send(err));
-});
 module.exports = router;

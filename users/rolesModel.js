@@ -17,8 +17,8 @@ function findBy(filter) {
 	return db('roles').where(filter);
 }
 
-async function add(user) {
-	const [rolesid] = await db('roles').insert(user);
+async function add(role) {
+	const [rolesid] = await db('roles').insert(role);
 	return findById(rolesid);
 }
 
@@ -29,10 +29,10 @@ function findById(id) {
 		.first();
 }
 
-function update(rolesid, user) {
+function update(rolesid, role) {
 	return db('roles')
 		.where('rolesid', Number(rolesid))
-		.update(user);
+		.update(role);
 }
 
 function remove(rolesid) {
@@ -40,36 +40,3 @@ function remove(rolesid) {
 		.where('rolesid', Number(rolesid))
 		.del();
 }
-
-/*
-    -- to view all helpers: 
-        SELECT * FROM Users 		
-        JOIN Userroles ON Userroles.usersid=Users.usersId
-        JOIN Roles ON Userroles.rolesid=Roles.rolesid
-		WHERE Roles.role='helper'
-		ORDER BY Users.usersid;
-*/
-
-/*
-    -- to view all students: 
-        SELECT * FROM Users 		
-        JOIN Userroles ON Userroles.usersid=Users.usersId
-        JOIN Roles ON Userroles.rolesid=Roles.rolesid
-		WHERE Roles.role='student'
-		ORDER BY Users.usersid;
-		*/
-
-/*
-    -- to view all students who are also helpers: 
-        SELECT * FROM Users 		
-        JOIN Userroles ON Userroles.usersid=Users.usersId
-        JOIN Roles ON Userroles.rolesid=Roles.rolesid
-		WHERE Roles.role='helper'
-        ORDER BY Users.usersid
-        UNION 
-        SELECT * FROM Users 		
-        JOIN Userroles ON Userroles.usersid=Users.usersId
-        JOIN Roles ON Userroles.rolesid=Roles.rolesid
-		WHERE Roles.role='student'
-        ORDER BY Users.usersid;
-*/
