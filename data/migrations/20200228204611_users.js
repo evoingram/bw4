@@ -14,37 +14,6 @@ exports.up = function(knex) {
 				.notNullable()
 				.unique();
 		})
-		.createTable('tickets', users => {
-			users.increments('ticketsid');
-			users
-				.integer('statusesid')
-				.unsigned()
-				.notNullable()
-				.references('statusesid')
-				.inTable('statuses')
-				.onUpdate('CASCADE')
-				.onDelete('CASCADE');
-			users
-				.integer('helperid')
-				.unsigned()
-				.notNullable()
-				.references('usersid')
-				.inTable('users')
-				.onUpdate('CASCADE')
-				.onDelete('CASCADE');
-			users
-				.integer('studentid')
-				.unsigned()
-				.notNullable()
-				.references('usersid')
-				.inTable('users')
-				.onUpdate('CASCADE')
-				.onDelete('CASCADE');
-
-			users.string('title', 256).notNullable();
-			users.string('description', 256).notNullable();
-			users.string('category', 256).notNullable();
-		})
 		.createTable('statuses', users => {
 			users.increments('statuses');
 			users
@@ -76,6 +45,37 @@ exports.up = function(knex) {
 				.inTable('roles')
 				.onUpdate('CASCADE')
 				.onDelete('CASCADE');
+		})
+		.createTable('tickets', users => {
+			users.increments('ticketsid');
+			users
+				.integer('statusesid')
+				.unsigned()
+				.notNullable()
+				.references('statusesid')
+				.inTable('statuses')
+				.onUpdate('CASCADE')
+				.onDelete('CASCADE');
+			users
+				.integer('helperid')
+				.unsigned()
+				.notNullable()
+				.references('usersid')
+				.inTable('users')
+				.onUpdate('CASCADE')
+				.onDelete('CASCADE');
+			users
+				.integer('studentid')
+				.unsigned()
+				.notNullable()
+				.references('usersid')
+				.inTable('users')
+				.onUpdate('CASCADE')
+				.onDelete('CASCADE');
+
+			users.string('title', 256).notNullable();
+			users.string('description', 256).notNullable();
+			users.string('category', 256).notNullable();
 		});
 };
 
