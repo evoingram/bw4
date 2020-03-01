@@ -1,5 +1,5 @@
 exports.seed = function(knex) {
-	return knex('usersroles').insert([
+	return knex('userroles').insert([
 		{
 			usersid: 1,
 			rolesid: 2
