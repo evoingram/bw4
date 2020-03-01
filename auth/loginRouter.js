@@ -15,7 +15,7 @@ router.post('/', (req, res) => {
 				const token = Token.getJwt(user.email);
 
 				res.status(200).json({
-					id: user.id,
+					usersid: user.usersid,
 					email: user.email,
 					token
 				});
