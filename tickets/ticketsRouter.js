@@ -15,7 +15,7 @@ router.get('/', restricted, (req, res) => {
 // get list of tickets by studentid
 // SELECT * FROM Tickets WHERE Tickets.studentid=studentid;
 router.get('/students/:studentid/tickets', restricted, (req, res) => {
-	Tickets.find()
+	Tickets.findBy({ studentid: req.params.studentid })
 		.then(tickets => {
 			res.status(200).json(tickets);
 		})
@@ -41,24 +41,9 @@ router.get('/queue', restricted, (req, res) => {
 		.catch(err => res.send(err));
 });
 
-router.get('/tickets/queue', restricted, (req, res) => {
-	Tickets.findBy({ statusesid: 1 })
-		.then(tickets => {
-			res.status(200).json(tickets);
-		})
-		.catch(err => res.send(err));
-});
-
 // resolved tickets
 
 router.get('/resolved', restricted, (req, res) => {
-	Tickets.findBy({ statusesid: 2 })
-		.then(tickets => {
-			res.status(200).json(tickets);
-		})
-		.catch(err => res.send(err));
-});
-router.get('/tickets/resolved', restricted, (req, res) => {
 	Tickets.findBy({ statusesid: 2 })
 		.then(tickets => {
 			res.status(200).json(tickets);
@@ -86,7 +71,7 @@ router.get('/helpers/:helperid', restricted, (req, res) => {
 	-- SQL to get individual ticket
 		SELECT * FROM Tickets WHERE Tickets.ticketsid=ticketsid;
 */
-router.get('/tickets/:ticketsid', restricted, (req, res) => {
+router.get('/:ticketsid', restricted, (req, res) => {
 	const ticketsid = req.params.ticketsid;
 	if (!ticketsid) {
 		res.status(404).json({ message: 'The ticket with the specified id does not exist.' });

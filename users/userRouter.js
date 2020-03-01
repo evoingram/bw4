@@ -3,6 +3,7 @@ const router = require('express').Router();
 const Users = require('./userModel.js');
 const restricted = require('../auth/restriction.js');
 
+// get list of users
 router.get('/', restricted, (req, res) => {
 	Users.find()
 		.then(users => {
@@ -11,6 +12,7 @@ router.get('/', restricted, (req, res) => {
 		.catch(err => res.send(err));
 });
 
+// get individual user
 router.get('/:id', restricted, (req, res) => {
 	const id = req.params.id;
 	if (!id) {
@@ -51,21 +53,20 @@ router.delete('/:id', restricted, (req, res) => {
     UPDATE Users.email = "" WHERE Users.usersid="";
     UPDATE Users.name = "" WHERE Users.usersid="";
 */
-router.put('/:cohortsid', (req, res) => {
-	const cohortsid = req.params.cohortsid;
-	const cohortName = req.body.cohort;
-	const updatedCohort = { cohortsid: cohortsid, cohort: cohortName };
+router.put('/:usersid', (req, res) => {
+	const usersid = req.params.usersid;
+	const user = req.body;
 
-	Cohorts.updateCohort(updatedCohort, cohortsid)
-		.then(cohort => {
-			if (cohort) {
-				res.json(cohort);
+	Users.update(user, usersid)
+		.then(user => {
+			if (user) {
+				res.json(user);
 			} else {
-				res.status(404).json({ message: 'Could not find cohort with given id' });
+				res.status(404).json({ message: 'Could not find user with given id' });
 			}
 		})
 		.catch(err => {
-			res.status(500).json({ message: 'Failed to update cohort' });
+			res.status(500).json({ message: 'Failed to update user' });
 		});
 });
 /*
@@ -73,42 +74,39 @@ router.put('/:cohortsid', (req, res) => {
     DELETE FROM Userroles where Userroles.usersid='' && WHERE Userroles.rolesid='';
 */
 
-router.put('/:cohortsid', (req, res) => {
-	const cohortsid = req.params.cohortsid;
-	const cohortName = req.body.cohort;
-	const updatedCohort = { cohortsid: cohortsid, cohort: cohortName };
+router.put('/:usersid', (req, res) => {
+	const usersid = req.params.usersid;
 
-	Cohorts.updateCohort(updatedCohort, cohortsid)
-		.then(cohort => {
-			if (cohort) {
-				res.json(cohort);
+	Users.removeHStatus(usersid)
+		.then(user => {
+			if (user) {
+				res.json(user);
 			} else {
-				res.status(404).json({ message: 'Could not find cohort with given id' });
+				res.status(404).json({ message: 'Could not find user with given id' });
 			}
 		})
 		.catch(err => {
-			res.status(500).json({ message: 'Failed to update cohort' });
+			res.status(500).json({ message: 'Failed to update user' });
 		});
 });
 /*
 -- add helper status
     INSERT INTO Userroles (usersid, rolesid) VALUES ('', '');
 */
-router.put('/:cohortsid', (req, res) => {
-	const cohortsid = req.params.cohortsid;
-	const cohortName = req.body.cohort;
-	const updatedCohort = { cohortsid: cohortsid, cohort: cohortName };
+router.put('/:usersid', (req, res) => {
+	const usersid = req.params.usersid;
+	const updatedUser = req.body;
 
-	Cohorts.updateCohort(updatedCohort, cohortsid)
-		.then(cohort => {
-			if (cohort) {
-				res.json(cohort);
+	Users.addAsHelper(updatedUser)
+		.then(user => {
+			if (user) {
+				res.json(user);
 			} else {
-				res.status(404).json({ message: 'Could not find cohort with given id' });
+				res.status(404).json({ message: 'Could not find user with given id' });
 			}
 		})
 		.catch(err => {
-			res.status(500).json({ message: 'Failed to update cohort' });
+			res.status(500).json({ message: 'Failed to update user' });
 		});
 });
 
@@ -121,8 +119,8 @@ router.put('/:cohortsid', (req, res) => {
 		ORDER BY Users.usersid;
 */
 
-router.get('/', restricted, (req, res) => {
-	Users.find()
+router.get('/helpers', restricted, (req, res) => {
+	Users.findHelpers()
 		.then(users => {
 			res.status(200).json(users);
 		})
@@ -135,10 +133,10 @@ router.get('/', restricted, (req, res) => {
         JOIN Roles ON Userroles.rolesid=Roles.rolesid
 		WHERE Roles.role='student'
 		ORDER BY Users.usersid;
-		*/
+*/
 
-router.get('/', restricted, (req, res) => {
-	Users.find()
+router.get('/students', restricted, (req, res) => {
+	Users.findStudents()
 		.then(users => {
 			res.status(200).json(users);
 		})
@@ -158,8 +156,8 @@ router.get('/', restricted, (req, res) => {
 		WHERE Roles.role='student'
         ORDER BY Users.usersid;
 */
-router.get('/', restricted, (req, res) => {
-	Users.find()
+router.get('/helperstudents', restricted, (req, res) => {
+	Users.findHStudents()
 		.then(users => {
 			res.status(200).json(users);
 		})

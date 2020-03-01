@@ -9,6 +9,7 @@ module.exports = {
 	findHelpers,
 	findHStudents,
 	addAsHelper,
+	removeHStatus,
 	update,
 	remove
 };
@@ -101,14 +102,20 @@ function findById(usersid) {
     UPDATE Users.email = "" WHERE Users.usersid="";
     UPDATE Users.name = "" WHERE Users.usersid="";
 */
-/*
--- remove helper status
-    DELETE FROM Userroles where Userroles.usersid='' && WHERE Userroles.rolesid='';
-*/
 function update(usersid, user) {
 	return db('users')
 		.where('usersid', Number(usersid))
 		.update(user);
+}
+/*
+-- remove helper status
+    DELETE FROM Userroles where Userroles.usersid='' && WHERE Userroles.rolesid='';
+*/
+async function removeHStatus(usersid) {
+	const [usersid] = await db('userroles')
+		.where('usersid', Number(usersid))
+		.delete();
+	return findById(usersid);
 }
 
 /*
