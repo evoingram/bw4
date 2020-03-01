@@ -6,7 +6,7 @@ exports.seed = function(knex) {
 			helperid: 2,
 			studentid: 1,
 			title: 'title ticket 1',
-			description: 'i am having a react problem.', // or true,
+			description: 'i am having a react problem.',
 			category: 'react'
 		},
 		{
@@ -15,7 +15,7 @@ exports.seed = function(knex) {
 			helperid: 2,
 			studentid: 1,
 			title: 'title ticket 2',
-			description: 'i am having a html problem.', // or true,
+			description: 'i am having a html problem.',
 			category: 'html'
 		},
 		{
@@ -24,7 +24,7 @@ exports.seed = function(knex) {
 			helperid: 2,
 			studentid: 3,
 			title: 'title ticket 3',
-			description: 'i am having a node problem.', // or true,
+			description: 'i am having a node problem.',
 			category: 'node'
 		},
 		{
@@ -33,7 +33,7 @@ exports.seed = function(knex) {
 			helperid: 2,
 			studentid: 4,
 			title: 'title ticket 4',
-			description: 'i am having a css problem.', // or true,
+			description: 'i am having a css problem.',
 			category: 'css'
 		},
 		{
@@ -42,7 +42,7 @@ exports.seed = function(knex) {
 			helperid: 4,
 			studentid: 5,
 			title: 'title ticket 5',
-			description: 'i am having a javascript problem.', // or true,
+			description: 'i am having a javascript problem.',
 			category: 'javascript'
 		},
 		{
@@ -51,7 +51,7 @@ exports.seed = function(knex) {
 			helperid: 4,
 			studentid: 2,
 			title: 'title ticket 6',
-			description: 'i am having another react problem.', // or true,
+			description: 'i am having another react problem.',
 			category: 'react'
 		}
 	]);
