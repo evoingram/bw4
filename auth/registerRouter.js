@@ -15,7 +15,7 @@ router.post('/', (req, res) => {
 		user.password = hash;
 
 		const token = Token.getJwt(user.email);
-
+		console.log('token hashed!! Next, registering.');
 		Users.add(user)
 			.then(saved => {
 				res.status(201).json({ usersid: saved.usersid, email: saved.email, name: saved.name, token: token });
