@@ -5,8 +5,8 @@ module.exports = {
 function validateUser(user) {
 	let errors = [];
 
-	if (!user.username || user.username.length < 2) {
-		errors.push('Username must contain at least 2 characters');
+	if (!user.email || user.email.length < 2) {
+		errors.push('Email must contain at least 2 characters');
 	}
 
 	if (!user.password || user.password.length < 4) {
