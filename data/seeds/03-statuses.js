@@ -5,11 +5,11 @@ exports.seed = function(knex) {
 			status: 'queue'
 		},
 		{
-			statusesid: 1,
+			statusesid: 2,
 			status: 'resolved'
 		},
 		{
-			statusesid: 1,
+			statusesid: 3,
 			status: 'in progress'
 		}
 	]);
