@@ -18,25 +18,25 @@ function findBy(filter) {
 }
 
 async function add(user) {
-	const [id] = await db('users').insert(user, 'usersid');
-	return findById(id);
+	const [usersid] = await db('users').insert(user, 'usersid');
+	return findById(usersid);
 }
 
 function findById(id) {
 	return db('users')
 		.select('usersid', 'username', 'email')
-		.where({ id })
+		.where({ usersid })
 		.first();
 }
 
-function update(id, user) {
+function update(usersid, user) {
 	return db('users')
-		.where('usersid', Number(id))
+		.where('usersid', Number(usersid))
 		.update(user);
 }
 
-function remove(id) {
+function remove(usersid) {
 	return db('users')
-		.where('usersid', Number(id))
+		.where('usersid', Number(usersid))
 		.del();
 }
