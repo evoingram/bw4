@@ -14,11 +14,11 @@ router.post('/', (req, res) => {
 		const hash = bcrypt.hashSync(user.password, 10);
 		user.password = hash;
 
-		const token = Token.getJwt(user.username);
+		const token = Token.getJwt(user.email);
 
 		Users.add(user)
 			.then(saved => {
-				res.status(201).json({ id: saved.id, username: saved.username, token: token });
+				res.status(201).json({ id: saved.id, email: saved.email, token: token });
 			})
 			.catch(error => {
 				res.status(500).json(error);

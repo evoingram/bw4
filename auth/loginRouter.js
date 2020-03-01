@@ -6,17 +6,17 @@ const Users = require('../users/userModel');
 const Token = require('./authHelpers.js');
 
 router.post('/', (req, res) => {
-	let { username, password } = req.body;
+	let { email, password } = req.body;
 
-	Users.findBy({ username })
+	Users.findBy({ email })
 		.first()
 		.then(user => {
 			if (user && bcrypt.compareSync(password, user.password)) {
-				const token = Token.getJwt(user.username);
+				const token = Token.getJwt(user.email);
 
 				res.status(200).json({
 					id: user.id,
-					username: user.username,
+					email: user.email,
 					token
 				});
 			} else {

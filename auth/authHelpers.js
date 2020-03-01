@@ -4,9 +4,9 @@ module.exports = {
 	getJwt
 };
 
-function getJwt(username) {
+function getJwt(email) {
 	const payload = {
-		username
+		email
 	};
 
 	const secret = process.env.JWT_SECRET || 'Let me tell you a myth about secrets.';
