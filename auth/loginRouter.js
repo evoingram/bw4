@@ -6,7 +6,7 @@ const Users = require('../users/userModel');
 const Token = require('./authHelpers.js');
 
 router.post('/', (req, res) => {
-	let { email, password } = req.params;
+	let { email, password } = req.body;
 
 	Users.findBy({ email })
 		.first()
@@ -15,13 +15,11 @@ router.post('/', (req, res) => {
 				const token = Token.getJwt(user.email);
 
 				res.status(200).json({
-					usersid: user.usersid,
 					email: user.email,
-					name: user.name,
 					token
 				});
 			} else {
-				res.status(401).json({ message: 'Invalid credentials' });
+				res.status(401).json({ message: 'invalid credentials' });
 			}
 		})
 		.catch(error => {
