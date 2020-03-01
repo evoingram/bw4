@@ -4,7 +4,7 @@ module.exports = {
 	development: {
 		client: 'pg',
 		connection:
-			'postgres://hojqyvewmiwxrk:8c4134cf7dea9444e1cca94fcb92b5ba072519ed05792efc290ddc91b580b615@ec2-54-80-184-43.compute-1.amazonaws.com:5432/ddrr8ser2jhafp',
+			'postgres://ivmyiwxdtjjlwk:446612eda53260d8cc3c60c4338fbe08119e68ea5acbecad37887a573965edd5@ec2-35-172-85-250.compute-1.amazonaws.com:5432/dfg35rja7jh41o',
 		migrations: {
 			directory: './data/migrations'
 		},
@@ -19,7 +19,7 @@ module.exports = {
 	production: {
 		client: 'pg', // postgresql
 		connection:
-			'postgres://hojqyvewmiwxrk:8c4134cf7dea9444e1cca94fcb92b5ba072519ed05792efc290ddc91b580b615@ec2-54-80-184-43.compute-1.amazonaws.com:5432/ddrr8ser2jhafp',
+			'postgres://ivmyiwxdtjjlwk:446612eda53260d8cc3c60c4338fbe08119e68ea5acbecad37887a573965edd5@ec2-35-172-85-250.compute-1.amazonaws.com:5432/dfg35rja7jh41o',
 		pool: {
 			min: 2,
 			max: 10
