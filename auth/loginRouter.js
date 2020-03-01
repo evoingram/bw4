@@ -6,7 +6,7 @@ const Users = require('../users/userModel');
 const Token = require('./authHelpers.js');
 
 router.post('/', (req, res) => {
-	let { email, password } = req.body;
+	let { email, password } = req.params;
 
 	Users.findBy({ email })
 		.first()
