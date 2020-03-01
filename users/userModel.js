@@ -12,57 +12,6 @@ module.exports = {
 function find() {
 	return db('users').select('usersid', 'username', 'email');
 }
-
-function findBy(filter) {
-	return db('users').where(filter);
-}
-
-async function add(user) {
-	const [usersid] = await db('users').insert(user);
-	return findById(usersid);
-}
-
-function findById(id) {
-	return db('users')
-		.select('usersid', 'username', 'email')
-		.where({ usersid: usersid })
-		.first();
-}
-
-function update(usersid, user) {
-	return db('users')
-		.where('usersid', Number(usersid))
-		.update(user);
-}
-
-function remove(usersid) {
-	return db('users')
-		.where('usersid', Number(usersid))
-		.del();
-}
-
-/*
--- delete user
-DELETE FROM Users where Users.usersid = '';
-*/
-
-/*
--- update own user profile
-    UPDATE Users.password = "" WHERE Users.usersid="";
-    UPDATE Users.email = "" WHERE Users.usersid="";
-    UPDATE Users.name = "" WHERE Users.usersid="";
-*/
-
-/*
--- remove helper status
-    DELETE FROM Userroles where Userroles.usersid='' && WHERE Userroles.rolesid='';
-*/
-
-/*
--- add helper status
-    INSERT INTO Userroles (usersid, rolesid) VALUES ('', '');
-*/
-
 /*
     -- to view all helpers: 
         SELECT * FROM Users 		
@@ -71,6 +20,13 @@ DELETE FROM Users where Users.usersid = '';
 		WHERE Roles.role='helper'
 		ORDER BY Users.usersid;
 */
+function findHelpers() {
+	return db('users')
+		.select('usersid', 'username', 'email')
+		.join('userroles', 'userroles.usersid', 'users.usersid')
+		.join('Roles', 'roles.rolesid', 'userroles.rolesid')
+		.where({ rolename: 'helper' });
+}
 
 /*
     -- to view all students: 
@@ -80,6 +36,14 @@ DELETE FROM Users where Users.usersid = '';
 		WHERE Roles.role='student'
 		ORDER BY Users.usersid;
 */
+
+function findStudents() {
+	return db('users')
+		.select('usersid', 'username', 'email')
+		.join('userroles', 'userroles.usersid', 'users.usersid')
+		.join('Roles', 'roles.rolesid', 'userroles.rolesid')
+		.where({ rolename: 'student' });
+}
 
 /*
     -- to view all students who are also helpers: 
@@ -95,3 +59,66 @@ DELETE FROM Users where Users.usersid = '';
 		WHERE Roles.role='student'
         ORDER BY Users.usersid;
 */
+function findHStudents() {
+	return db('users')
+		.select('usersid', 'username', 'email')
+		.join('userroles', 'userroles.usersid', 'users.usersid')
+		.join('roles', 'roles.rolesid', 'userroles.rolesid')
+		.where({ 'roles.rolename': 'student' })
+		.union(function() {
+			this.select('*')
+				.from('users')
+				.select('usersid', 'username', 'email')
+				.join('userroles', 'userroles.usersid', 'users.usersid')
+				.join('roles', 'roles.rolesid', 'userroles.rolesid')
+				.where({ 'roles.rolename': 'helper' });
+		});
+}
+
+function findBy(filter) {
+	return db('users').where(filter);
+}
+
+async function add(user) {
+	const [usersid] = await db('users').insert(user);
+	return findById(usersid);
+}
+
+function findById(usersid) {
+	return db('users')
+		.select('usersid', 'username', 'email')
+		.where({ usersid: usersid })
+		.first();
+}
+
+/*
+-- update own user profile
+    UPDATE Users.password = "" WHERE Users.usersid="";
+    UPDATE Users.email = "" WHERE Users.usersid="";
+    UPDATE Users.name = "" WHERE Users.usersid="";
+*/
+/*
+-- remove helper status
+    DELETE FROM Userroles where Userroles.usersid='' && WHERE Userroles.rolesid='';
+*/
+
+/*
+-- add helper status
+    INSERT INTO Userroles (usersid, rolesid) VALUES ('', '');
+*/
+
+function update(usersid, user) {
+	return db('users')
+		.where('usersid', Number(usersid))
+		.update(user);
+}
+
+/*
+-- delete user
+DELETE FROM Users where Users.usersid = '';
+*/
+function remove(usersid) {
+	return db('users')
+		.where('usersid', Number(usersid))
+		.del();
+}
