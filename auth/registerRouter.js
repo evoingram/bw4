@@ -18,7 +18,7 @@ router.post('/', (req, res) => {
 
 		Users.add(user)
 			.then(saved => {
-				res.status(201).json({ usersid: saved.usersid, email: saved.email, token: token });
+				res.status(201).json({ usersid: saved.usersid, email: saved.email, name: saved.name, token: token });
 			})
 			.catch(error => {
 				res.status(500).json(error);
