@@ -28,3 +28,10 @@ describe('server', function() {
 		});
 	});
 });
+
+// server.use('/api/login', loginRouter);
+// server.use('/api/register', registerRouter);
+// server.use('/api/users', usersRouter);
+// server.use('/api/tickets', ticketsRouter);
+// server.use('/api/statuses', statusesRouter);
+// server.use('/api/roles', rolesRouter);

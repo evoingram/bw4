@@ -139,3 +139,21 @@ describe('cohorts router', function() {
 		});
 	});
 });
+
+// get all roles -- router.get('/', restricted, (req, res) => {
+// get individual role -- router.get('/:rolesid', restricted, (req, res) => {
+// create role -- router.post('/', restricted, (req, res) => {
+// update role -- router.put('/:rolesid', restricted, (req, res) => {
+// delete role -- router.delete('/:id', restricted, (req, res) => {
+
+/*
+-- delete user
+DELETE FROM Users where Users.usersid = '';
+*/
+// router.delete('/:id', restricted, (req, res) => {
+
+// get individual user
+// router.get('/:id', restricted, (req, res) => {
+
+// get list of users
+// router.get('/', restricted, (req, res) => {
