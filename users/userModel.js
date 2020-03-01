@@ -40,3 +40,25 @@ function remove(usersid) {
 		.where('usersid', Number(usersid))
 		.del();
 }
+
+/*
+-- delete user
+DELETE FROM Users where Users.usersid = '';
+*/
+
+/*
+-- update own user profile
+    UPDATE Users.password = "" WHERE Users.usersid="";
+    UPDATE Users.email = "" WHERE Users.usersid="";
+    UPDATE Users.name = "" WHERE Users.usersid="";
+*/
+
+/*
+-- remove helper status
+    DELETE FROM Userroles where Userroles.usersid='' && WHERE Userroles.rolesid='';
+*/
+
+/*
+-- add helper status
+    INSERT INTO Userroles (usersid, rolesid) VALUES ('', '');
+*/

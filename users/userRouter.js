@@ -26,6 +26,11 @@ router.get('/:id', restricted, (req, res) => {
 	}
 });
 
+/*
+-- delete user
+DELETE FROM Users where Users.usersid = '';
+*/
+
 router.delete('/:id', restricted, (req, res) => {
 	const id = req.params.id;
 	if (!id) {
@@ -37,6 +42,73 @@ router.delete('/:id', restricted, (req, res) => {
 		})
 		.catch(err => {
 			res.status(500).json({ message: 'The user could not be removed' });
+		});
+});
+
+/*
+-- update own user profile
+    UPDATE Users.password = "" WHERE Users.usersid="";
+    UPDATE Users.email = "" WHERE Users.usersid="";
+    UPDATE Users.name = "" WHERE Users.usersid="";
+*/
+router.put('/:cohortsid', (req, res) => {
+	const cohortsid = req.params.cohortsid;
+	const cohortName = req.body.cohort;
+	const updatedCohort = { cohortsid: cohortsid, cohort: cohortName };
+
+	Cohorts.updateCohort(updatedCohort, cohortsid)
+		.then(cohort => {
+			if (cohort) {
+				res.json(cohort);
+			} else {
+				res.status(404).json({ message: 'Could not find cohort with given id' });
+			}
+		})
+		.catch(err => {
+			res.status(500).json({ message: 'Failed to update cohort' });
+		});
+});
+/*
+-- remove helper status
+    DELETE FROM Userroles where Userroles.usersid='' && WHERE Userroles.rolesid='';
+*/
+
+router.put('/:cohortsid', (req, res) => {
+	const cohortsid = req.params.cohortsid;
+	const cohortName = req.body.cohort;
+	const updatedCohort = { cohortsid: cohortsid, cohort: cohortName };
+
+	Cohorts.updateCohort(updatedCohort, cohortsid)
+		.then(cohort => {
+			if (cohort) {
+				res.json(cohort);
+			} else {
+				res.status(404).json({ message: 'Could not find cohort with given id' });
+			}
+		})
+		.catch(err => {
+			res.status(500).json({ message: 'Failed to update cohort' });
+		});
+});
+/*
+-- add helper status
+    INSERT INTO Userroles (usersid, rolesid) VALUES ('', '');
+*/
+router.put('/:cohortsid', (req, res) => {
+	const cohortsid = req.params.cohortsid;
+	const cohortName = req.body.cohort;
+	const updatedCohort = { cohortsid: cohortsid, cohort: cohortName };
+
+	Cohorts.updateCohort(updatedCohort, cohortsid)
+		.then(cohort => {
+			if (cohort) {
+				res.json(cohort);
+			} else {
+				res.status(404).json({ message: 'Could not find cohort with given id' });
+			}
+		})
+		.catch(err => {
+			res.status(500).json({ message: 'Failed to update cohort' });
 		});
 });
 
