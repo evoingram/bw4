@@ -1,20 +1,84 @@
 exports.up = function(knex) {
-	return knex.schema.createTable('users', users => {
-		users.increments('usersid');
+	return knex.schema
+		.createTable('users', users => {
+			users.increments('usersid');
 
-		users.string('password', 128).notNullable();
+			users.string('password', 128).notNullable();
 
-		users
-			.string('email', 128)
-			.notNullable()
-			.unique();
-		users
-			.string('name', 128)
-			.notNullable()
-			.unique();
-	});
+			users
+				.string('email', 128)
+				.notNullable()
+				.unique();
+			users
+				.string('name', 128)
+				.notNullable()
+				.unique();
+		})
+		.createTable('tickets', users => {
+			users.increments('ticketsid');
+			tbl.integer('statusesid')
+				.unsigned()
+				.notNullable()
+				.references('statusesid')
+				.inTable('statuses')
+				.onUpdate('CASCADE')
+				.onDelete('CASCADE');
+			tbl.integer('helperid')
+				.unsigned()
+				.notNullable()
+				.references('usersid')
+				.inTable('users')
+				.onUpdate('CASCADE')
+				.onDelete('CASCADE');
+			tbl.integer('studentid')
+				.unsigned()
+				.notNullable()
+				.references('usersid')
+				.inTable('users')
+				.onUpdate('CASCADE')
+				.onDelete('CASCADE');
+
+			users.string('title', 256).notNullable();
+			users.string('description', 256).notNullable();
+			users.string('category', 256).notNullable();
+		})
+		.createTable('statuses', users => {
+			users.increments('statuses');
+			users
+				.string('status', 128)
+				.notNullable()
+				.unique();
+		})
+		.createTable('roles', users => {
+			users.increments('rolesid');
+			users
+				.string('rolename', 128)
+				.notNullable()
+				.unique();
+		})
+		.createTable('userroles', users => {
+			tbl.integer('usersid')
+				.unsigned()
+				.notNullable()
+				.references('usersid')
+				.inTable('users')
+				.onUpdate('CASCADE')
+				.onDelete('CASCADE');
+			tbl.integer('rolesid')
+				.unsigned()
+				.notNullable()
+				.references('rolesid')
+				.inTable('roles')
+				.onUpdate('CASCADE')
+				.onDelete('CASCADE');
+		});
 };
 
 exports.down = function(knex) {
-	return knex.schema.dropTableIfExists('users');
+	return knex.schema
+		.dropTableIfExists('users')
+		.dropTableIfExists('tickets')
+		.dropTableIfExists('statuses')
+		.dropTableIfExists('roles')
+		.dropTableIfExists('userroles');
 };
