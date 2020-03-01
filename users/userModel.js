@@ -5,6 +5,10 @@ module.exports = {
 	find,
 	findBy,
 	findById,
+	findStudents,
+	findHelpers,
+	findHStudents,
+	addAsHelper,
 	update,
 	remove
 };
@@ -101,16 +105,20 @@ function findById(usersid) {
 -- remove helper status
     DELETE FROM Userroles where Userroles.usersid='' && WHERE Userroles.rolesid='';
 */
+function update(usersid, user) {
+	return db('users')
+		.where('usersid', Number(usersid))
+		.update(user);
+}
 
 /*
 -- add helper status
     INSERT INTO Userroles (usersid, rolesid) VALUES ('', '');
 */
 
-function update(usersid, user) {
-	return db('users')
-		.where('usersid', Number(usersid))
-		.update(user);
+async function addAsHelper(userRole) {
+	const [usersid] = await db('userroles').insert(userRole);
+	return findById(usersid);
 }
 
 /*
