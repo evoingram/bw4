@@ -4,7 +4,7 @@ exports.seed = function(knex) {
 			usersid: 1,
 			password: 'password',
 			email: 'email@email.com',
-			name: 'johnny appleseed'
+			name: 'Erica Ingram'
 		},
 		{
 			usersid: 2,
@@ -16,19 +16,19 @@ exports.seed = function(knex) {
 			usersid: 3,
 			password: 'password',
 			email: 'email2@email.com',
-			name: 'johnny appleseed'
+			name: 'hank hill'
 		},
 		{
 			usersid: 4,
 			password: 'password',
 			email: 'email3@email.com',
-			name: 'johnny appleseed'
+			name: 'peggy hill'
 		},
 		{
 			usersid: 5,
 			password: 'password',
 			email: 'email4@email.com',
-			name: 'johnny appleseed'
+			name: 'luanne platter'
 		}
 	]);
 };
