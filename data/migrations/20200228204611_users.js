@@ -15,7 +15,7 @@ exports.up = function(knex) {
 				.unique();
 		})
 		.createTable('statuses', users => {
-			users.increments('statuses');
+			users.increments('statusesid');
 			users
 				.string('status', 128)
 				.notNullable()
