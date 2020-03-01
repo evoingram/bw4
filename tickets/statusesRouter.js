@@ -29,9 +29,42 @@ router.get('/:id', restricted, (req, res) => {
 	}
 });
 
+// create status
+
+router.post('/', restricted, (req, res) => {
+	const newStatus = req.body;
+
+	Status.add(newStatus)
+		.then(status => {
+			res.status(201).json(status);
+		})
+		.catch(err => {
+			res.status(500).json({ message: 'Failed to create new status' });
+		});
+});
+
+// update status
+
+router.put('/:statusesid', restricted, (req, res) => {
+	const statusesid = req.params.statusesid;
+	const updatedStatus = req.body;
+
+	Status.update(updatedStatus, statusesid)
+		.then(status => {
+			if (status) {
+				res.json(status);
+			} else {
+				res.status(404).json({ message: 'Could not find status with given id' });
+			}
+		})
+		.catch(err => {
+			res.status(500).json({ message: 'Failed to update status' });
+		});
+});
+
 // delete status
 
-router.delete('/:id', restricted, (req, res) => {
+router.delete('/:statusesid', restricted, (req, res) => {
 	const id = req.params.id;
 	if (!id) {
 		res.status(404).json({ message: 'The status with the specified ID does not exist.' });

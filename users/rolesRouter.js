@@ -28,12 +28,25 @@ router.get('/:rolesid', restricted, (req, res) => {
 	}
 });
 
+// create role
+
+router.post('/', restricted, (req, res) => {
+	const newRole = req.body;
+
+	Roles.add(newRole)
+		.then(role => {
+			res.status(201).json(role);
+		})
+		.catch(err => {
+			res.status(500).json({ message: 'Failed to create new role' });
+		});
+});
+
 // update role
 
 router.put('/:rolesid', restricted, (req, res) => {
 	const rolesid = req.params.rolesid;
-	const roleName = req.body.rolename;
-	const updatedRole = { rolename: roleName };
+	const updatedRole = req.body;
 
 	Roles.update(updatedRole, rolesid)
 		.then(role => {
