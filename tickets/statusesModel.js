@@ -18,7 +18,7 @@ function findBy(filter) {
 }
 
 async function addStatus(status) {
-	const [statusesid] = await db('statuses').insert({ statusname: status.status }, 'statusesid');
+	const [statusesid] = await db('statuses').insert({ status: status }, 'statusesid');
 	return findById(statusesid);
 }
 

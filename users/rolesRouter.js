@@ -31,9 +31,9 @@ router.get('/:rolesid', restricted, (req, res) => {
 // create role
 
 router.post('/', restricted, (req, res) => {
-	const newRole = req.body;
+	const roleName = req.body.rolename;
 
-	Roles.addRole(newRole)
+	Roles.addRole(roleName)
 		.then(role => {
 			res.status(201).json(role);
 		})
