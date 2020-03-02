@@ -10,7 +10,7 @@ module.exports = {
 };
 
 function find() {
-	return db('roles').select('rolesid', 'username', 'email');
+	return db('roles').select('rolesid', 'rolename');
 }
 
 function findBy(filter) {
@@ -24,7 +24,7 @@ async function add(role) {
 
 function findById(id) {
 	return db('roles')
-		.select('rolesid', 'username', 'email')
+		.select('rolesid', 'rolename')
 		.where({ rolesid: rolesid })
 		.first();
 }

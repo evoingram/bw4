@@ -15,7 +15,7 @@ module.exports = {
 };
 
 function find() {
-	return db('users').select('usersid', 'username', 'email');
+	return db('users').select('usersid', 'name', 'email');
 }
 /*
     -- to view all helpers: 
@@ -27,7 +27,7 @@ function find() {
 */
 function findHelpers() {
 	return db('users')
-		.select('usersid', 'username', 'email')
+		.select('usersid', 'name', 'email')
 		.join('userroles', 'userroles.usersid', 'users.usersid')
 		.join('Roles', 'roles.rolesid', 'userroles.rolesid')
 		.where({ rolename: 'helper' });
@@ -44,7 +44,7 @@ function findHelpers() {
 
 function findStudents() {
 	return db('users')
-		.select('usersid', 'username', 'email')
+		.select('usersid', 'name', 'email')
 		.join('userroles', 'userroles.usersid', 'users.usersid')
 		.join('Roles', 'roles.rolesid', 'userroles.rolesid')
 		.where({ rolename: 'student' });
@@ -66,14 +66,14 @@ function findStudents() {
 */
 function findHStudents() {
 	return db('users')
-		.select('usersid', 'username', 'email')
+		.select('usersid', 'name', 'email')
 		.join('userroles', 'userroles.usersid', 'users.usersid')
 		.join('roles', 'roles.rolesid', 'userroles.rolesid')
 		.where({ 'roles.rolename': 'student' })
 		.union(function() {
 			this.select('*')
 				.from('users')
-				.select('usersid', 'username', 'email')
+				.select('usersid', 'name', 'email')
 				.join('userroles', 'userroles.usersid', 'users.usersid')
 				.join('roles', 'roles.rolesid', 'userroles.rolesid')
 				.where({ 'roles.rolename': 'helper' });
@@ -91,7 +91,7 @@ async function add(user) {
 
 function findById(usersid) {
 	return db('users')
-		.select('usersid', 'username', 'email')
+		.select('usersid', 'name', 'email')
 		.where({ usersid: usersid })
 		.first();
 }
