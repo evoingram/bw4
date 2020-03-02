@@ -62,12 +62,12 @@ router.put('/:rolesid', restricted, (req, res) => {
 });
 
 // delete role
-router.delete('/:id', restricted, (req, res) => {
-	const id = req.params.id;
-	if (!id) {
+router.delete('/:rolesid', restricted, (req, res) => {
+	const rolesid = req.params.rolesid;
+	if (!rolesid) {
 		res.status(404).json({ message: 'The role with the specified ID does not exist.' });
 	}
-	Roles.remove(id)
+	Roles.remove(rolesid)
 		.then(role => {
 			res.json(role);
 		})

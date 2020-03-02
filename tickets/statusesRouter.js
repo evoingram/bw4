@@ -65,11 +65,11 @@ router.put('/:statusesid', restricted, (req, res) => {
 // delete status
 
 router.delete('/:statusesid', restricted, (req, res) => {
-	const id = req.params.id;
-	if (!id) {
+	const statusesid = req.params.statusesid;
+	if (!statusesid) {
 		res.status(404).json({ message: 'The status with the specified ID does not exist.' });
 	}
-	Statuses.remove(id)
+	Statuses.remove(statusesid)
 		.then(status => {
 			res.json(status);
 		})
