@@ -75,7 +75,7 @@ function findHStudents() {
 				.select('usersid', 'name', 'email')
 				.from('users')
 				.join('userroles', 'userroles.usersid', 'users.usersid')
-				.where({ 'roles.rolesid': 1 });
+				.where({ 'userroles.rolesid': 1 });
 		});
 }
 

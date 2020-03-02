@@ -1,7 +1,7 @@
 const db = require('../data/dbConfig');
 
 module.exports = {
-	add,
+	addTicket,
 	find,
 	findBy,
 	findById,
@@ -47,7 +47,7 @@ function findBy(filter) {
 // As a student I want to be able to create a new help ticket with a title, description, what I've tried and a category (i.e. React).
 // INSERT INTO Tickets (statusesid, studentid, title, description, category) VALUES ("", "", "", "", "");
 
-async function add(ticket) {
+async function addTicket(ticket) {
 	const [ticketsid] = await db('tickets').insert(ticket, 'ticketsid');
 	return findById(ticketsid);
 }
