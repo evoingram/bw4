@@ -149,7 +149,7 @@ router.put('/helpers/:usersid', (req, res) => {
 */
 router.put('/helpers/:usersid', (req, res) => {
 	const usersid = req.params.usersid;
-	const rolesid = req.params.rolesid;
+	const rolesid = req.body.rolesid;
 
 	Users.addAsHelper(rolesid, usersid)
 		.then(user => {
@@ -172,7 +172,7 @@ router.post('/students/:usersid', (req, res) => {
 	const usersid = req.params.usersid;
 	const rolesid = req.body.rolesid;
 
-	Users.addAsHelper(rolesid, usersid)
+	Users.addAsHelper(usersid, rolesid)
 		.then(user => {
 			if (user) {
 				res.json(user);
