@@ -39,7 +39,7 @@ exports.seed = function(knex) {
 		{
 			ticketsid: 5,
 			statusesid: 1,
-			helperid: 4,
+			helperid: '',
 			studentid: 5,
 			title: 'title ticket 5',
 			description: 'i am having a javascript problem.',
@@ -48,7 +48,7 @@ exports.seed = function(knex) {
 		{
 			ticketsid: 6,
 			statusesid: 1,
-			helperid: 4,
+			helperid: '',
 			studentid: 2,
 			title: 'title ticket 6',
 			description: 'i am having another react problem.',
