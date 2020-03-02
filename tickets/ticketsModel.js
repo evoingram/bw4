@@ -5,7 +5,7 @@ module.exports = {
 	find,
 	findBy,
 	findById,
-	update,
+	updateTicket,
 	remove
 };
 
@@ -47,8 +47,8 @@ function findBy(filter) {
 // As a student I want to be able to create a new help ticket with a title, description, what I've tried and a category (i.e. React).
 // INSERT INTO Tickets (statusesid, studentid, title, description, category) VALUES ("", "", "", "", "");
 
-async function addTicket(ticket) {
-	const [ticketsid] = await db('tickets').insert(ticket, 'ticketsid');
+async function addTicket(newTicket) {
+	const [ticketsid] = await db('tickets').insert(newTicket, 'ticketsid');
 	return findById(ticketsid);
 }
 
@@ -82,7 +82,7 @@ function findById(ticketsid) {
 */
 
 // update ticket
-function update(ticketsid, ticket) {
+function updateTicket(ticketsid, ticket) {
 	return db('tickets')
 		.where('ticketsid', Number(ticketsid))
 		.update(ticket);
