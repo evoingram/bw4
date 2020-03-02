@@ -11,7 +11,7 @@ module.exports = {
 
 //  .join(SELECT Status from Statuses WHERE Statuses.statusesid = tickets.id) AS "status")
 function find() {
-	return db('tickets').select('ticketsid', 'title', 'description', 'category');
+	return db('tickets').select('ticketsid', 'statusesid', 'helperid', 'studentid', 'title', 'description', 'category');
 }
 /*
 -- Allow the ability to subscribe to the Queue in slack to be notified if someone opens a ticket.
@@ -61,7 +61,7 @@ async function add(ticket) {
 
 function findById(ticketsid) {
 	return db('tickets')
-		.select('ticketsid', 'title', 'description', 'category')
+		.select('ticketsid', 'statusesid', 'helperid', 'studentid', 'title', 'description', 'category')
 		.where({ ticketsid: ticketsid })
 		.first();
 }

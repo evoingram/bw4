@@ -56,8 +56,8 @@ router.get('/resolved', restricted, (req, res) => {
         SELECT * FROM Tickets WHERE Tickets.helperid=helperid;
 
 */
-router.get('/helpers/:helperid', restricted, (req, res) => {
-	Tickets.findBy({ helperid: 2 })
+router.get('/helpers/:helperid/tickets', restricted, (req, res) => {
+	Tickets.findBy({ helperid: req.params.helperid })
 		.then(tickets => {
 			res.status(200).json(tickets);
 		})
