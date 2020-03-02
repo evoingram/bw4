@@ -48,11 +48,11 @@ How to get a three:
 - [X] The project has end to end tests using a test database.
 	https://learning.postman.com/docs/postman/api-documentation/documenting-your-api/
 
-- [X] Student added authorization and authentication services. 
+- [X] Student added authorization and authentication services.
 
 - [X] Student migrated from SQLite3 to use a server RDBMS, like Postgres or MySQL and incorporated seeding scripts in their solution.
 
-- [X] Student incorporated services interfaces and appropriate repositories for code reuse and deployed the API to a hosting platform. 
+- [X] Student incorporated services interfaces and appropriate repositories for code reuse and deployed the API to a hosting platform.
 
 - [X] The API is configured to dynamically load configuration and secrets using environment variables.
 
