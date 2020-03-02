@@ -54,6 +54,7 @@ All endpoints have been tested via Postman.
 
 ** still working on endpoint for adding/removing student users as helpers; but right now if they're already in the system, they can be both.
 
+
 #### Tickets Schema
 
 | field       | data type        | metadata                                            |

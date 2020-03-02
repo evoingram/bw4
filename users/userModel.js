@@ -110,9 +110,9 @@ function updateUser(usersid, user) {
 -- remove helper status
     DELETE FROM Userroles where Userroles.usersid='' && WHERE Userroles.rolesid='';
 */
-async function removeHStatus(rolesid, usersid) {
+async function removeHStatus(usersid) {
 	[usersid] = await db('userroles')
-		.where({ usersid: Number(usersid), rolesid: rolesid })
+		.where({ usersid: Number(usersid), rolesid: 1 })
 		.delete();
 	return findById(usersid);
 }
