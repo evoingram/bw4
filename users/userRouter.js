@@ -168,7 +168,7 @@ router.put('/helpers/:usersid', (req, res) => {
 -- add student status
     INSERT INTO Userroles (usersid, rolesid) VALUES ('', '');
 */
-router.put('/students/:usersid', (req, res) => {
+router.post('/students/:usersid', (req, res) => {
 	const usersid = req.params.usersid;
 	const updatedUser = req.body;
 
