@@ -49,7 +49,7 @@ function findBy(filter) {
 
 async function addTicket(newTicket) {
 	const [ticketsid] = await db('tickets').insert(newTicket, 'ticketsid');
-	return findById(ticketsid);
+	return findById(ticketsid.ticketsid);
 }
 
 /*
