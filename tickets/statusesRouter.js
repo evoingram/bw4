@@ -34,7 +34,7 @@ router.get('/:id', restricted, (req, res) => {
 router.post('/', restricted, (req, res) => {
 	const newStatus = req.body;
 
-	Status.add(newStatus)
+	Statuses.add(newStatus)
 		.then(status => {
 			res.status(201).json(status);
 		})
@@ -49,7 +49,7 @@ router.put('/:statusesid', restricted, (req, res) => {
 	const statusesid = req.params.statusesid;
 	const updatedStatus = req.body;
 
-	Status.update(updatedStatus, statusesid)
+	Statuses.update(updatedStatus, statusesid)
 		.then(status => {
 			if (status) {
 				res.json(status);
