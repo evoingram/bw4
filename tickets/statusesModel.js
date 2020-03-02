@@ -22,7 +22,7 @@ async function addStatus(status) {
 	return findById(statusesid);
 }
 
-function findById(id) {
+function findById(statusesid) {
 	return db('statuses')
 		.select('statusesid', 'status')
 		.where({ statusesid: statusesid })

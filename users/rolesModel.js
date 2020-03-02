@@ -22,7 +22,7 @@ async function addRole(role) {
 	return findById(rolesid);
 }
 
-function findById(id) {
+function findById(rolesid) {
 	return db('roles')
 		.select('rolesid', 'rolename')
 		.where({ rolesid: rolesid })
