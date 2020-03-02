@@ -14,7 +14,7 @@ router.get('/', restricted, (req, res) => {
 
 // get list of tickets by studentid
 // SELECT * FROM Tickets WHERE Tickets.studentid=studentid;
-router.get('/students/:studentid/tickets', restricted, (req, res) => {
+router.get('/students/:studentid', restricted, (req, res) => {
 	Tickets.findBy({ studentid: req.params.studentid })
 		.then(tickets => {
 			res.status(200).json(tickets);
@@ -56,7 +56,7 @@ router.get('/resolved', restricted, (req, res) => {
         SELECT * FROM Tickets WHERE Tickets.helperid=helperid;
 
 */
-router.get('/helpers/:helperid/tickets', restricted, (req, res) => {
+router.get('/helpers/:helperid', restricted, (req, res) => {
 	Tickets.findBy({ helperid: req.params.helperid })
 		.then(tickets => {
 			res.status(200).json(tickets);
@@ -153,7 +153,7 @@ router.put('/:ticketsid', restricted, (req, res) => {
 	const ticketsid = req.params.ticketsid;
 	const helperid = req.body.helperid;
 	const ticketStatus = req.body.status;
-	const updatedTicket = { helperid: helperid, status: ticketStatus };
+	const updatedTicket = req.body;
 
 	Tickets.updateTicket(ticketsid, updatedTicket)
 		.then(ticket => {
