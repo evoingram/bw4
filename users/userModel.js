@@ -27,6 +27,7 @@ function find() {
 */
 function findHelpers() {
 	return db('users')
+		.distinct()
 		.select('*')
 		.from('users')
 		.join('userroles', 'userroles.usersid', 'users.usersid')
@@ -44,6 +45,7 @@ function findHelpers() {
 
 function findStudents() {
 	return db('users')
+		.distinct()
 		.select('*')
 		.from('users')
 		.join('userroles', 'userroles.usersid', 'users.usersid')
@@ -66,6 +68,7 @@ function findStudents() {
 */
 function findHStudents() {
 	return db('users')
+		.distinct()
 		.select('*')
 		.from('users')
 		.join('userroles', 'userroles.usersid', 'users.usersid')
