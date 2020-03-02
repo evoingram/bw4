@@ -89,7 +89,7 @@ All endpoints have been tested via Postman.
 | usersid     | unsigned integer | primary foreign key referencing id in users table   |
 | rolesid     | unsigned integer | primary foreign key referencing id in roles table   |
 
-### Roles Schema
+#### Roles Schema
 
 | field    | data type        | metadata                                               |
 | :------  | :--------------- | :--------------------------------------------------    |
