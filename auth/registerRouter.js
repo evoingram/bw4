@@ -18,8 +18,8 @@ router.post('/', (req, res) => {
 		console.log('token hashed!! Next, registering.');
 		Users.add(user)
 			.then(saved => {
-				Users.addAsHelper({ usersid: saved.usersid, rolesid: 2 });
 				res.status(201).json({ usersid: saved.usersid, email: saved.email, name: saved.name, token: token });
+				Users.addAsHelper({ usersid: saved.usersid, rolesid: 2 });
 			})
 			.catch(error => {
 				res.status(500).json(error);
