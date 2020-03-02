@@ -17,8 +17,8 @@ function findBy(filter) {
 	return db('statuses').where(filter);
 }
 
-async function add(user) {
-	const [statusesid] = await db('statuses').insert(user);
+async function add(status) {
+	const [statusesid] = await db('statuses').insert(status, 'statusesid');
 	return findById(statusesid);
 }
 
@@ -29,10 +29,10 @@ function findById(id) {
 		.first();
 }
 
-function update(statusesid, user) {
+function update(statusesid, status) {
 	return db('statuses')
 		.where('statusesid', Number(statusesid))
-		.update(user);
+		.update(status);
 }
 
 function remove(statusesid) {

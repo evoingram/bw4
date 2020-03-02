@@ -22,14 +22,14 @@ function find() {
         SELECT * FROM Users 		
         JOIN Userroles ON Userroles.usersid=Users.usersId
         JOIN Roles ON Userroles.rolesid=Roles.rolesid
-		WHERE Roles.role='helper'
+		WHERE Roles.rolename='helper'
 		ORDER BY Users.usersid;
 */
 function findHelpers() {
 	return db('users')
 		.select('usersid', 'name', 'email')
 		.join('userroles', 'userroles.usersid', 'users.usersid')
-		.join('Roles', 'roles.rolesid', 'userroles.rolesid')
+		.join('roles', 'roles.rolesid', 'userroles.rolesid')
 		.where({ rolename: 'helper' });
 }
 
@@ -85,7 +85,7 @@ function findBy(filter) {
 }
 
 async function add(user) {
-	const [usersid] = await db('users').insert(user);
+	const [usersid] = await db('users').insert(user, 'usersid');
 	return findById(usersid);
 }
 
