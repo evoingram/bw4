@@ -164,4 +164,24 @@ router.put('/helpers/:usersid', (req, res) => {
 		});
 });
 
+/*
+-- add student status
+    INSERT INTO Userroles (usersid, rolesid) VALUES ('', '');
+*/
+router.put('/students/:usersid', (req, res) => {
+	const usersid = req.params.usersid;
+	const updatedUser = req.body;
+
+	Users.addAsStudent(updatedUser)
+		.then(user => {
+			if (user) {
+				res.json(user);
+			} else {
+				res.status(404).json({ message: `Could not find user with given id ${usersid}` });
+			}
+		})
+		.catch(err => {
+			res.status(500).json({ message: `Failed to update user ${usersid}` });
+		});
+});
 module.exports = router;

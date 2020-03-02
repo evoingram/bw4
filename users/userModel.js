@@ -118,7 +118,7 @@ async function removeHStatus(usersid) {
 }
 
 /*
--- add helper status
+-- add helper/student status
     INSERT INTO Userroles (usersid, rolesid) VALUES ('', '');
 */
 
