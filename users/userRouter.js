@@ -69,46 +69,6 @@ router.put('/:usersid', (req, res) => {
 			res.status(500).json({ message: 'Failed to update user' });
 		});
 });
-/*
--- remove helper status
-    DELETE FROM Userroles where Userroles.usersid='' && WHERE Userroles.rolesid='';
-*/
-
-router.put('/helpers/:usersid', (req, res) => {
-	const usersid = req.params.usersid;
-
-	Users.removeHStatus(usersid)
-		.then(user => {
-			if (user) {
-				res.json(user);
-			} else {
-				res.status(404).json({ message: 'Could not find user with given id' });
-			}
-		})
-		.catch(err => {
-			res.status(500).json({ message: 'Failed to update user' });
-		});
-});
-/*
--- add helper status
-    INSERT INTO Userroles (usersid, rolesid) VALUES ('', '');
-*/
-router.put('/helpers/:usersid', (req, res) => {
-	const usersid = req.params.usersid;
-	const updatedUser = req.body;
-
-	Users.addAsHelper(updatedUser)
-		.then(user => {
-			if (user) {
-				res.json(user);
-			} else {
-				res.status(404).json({ message: 'Could not find user with given id' });
-			}
-		})
-		.catch(err => {
-			res.status(500).json({ message: 'Failed to update user' });
-		});
-});
 
 /*
     -- to view all helpers: 
@@ -162,6 +122,46 @@ router.get('/helperstudents', restricted, (req, res) => {
 			res.status(200).json(users);
 		})
 		.catch(err => res.send(err));
+});
+/*
+-- remove helper status
+    DELETE FROM Userroles where Userroles.usersid='' && WHERE Userroles.rolesid='';
+*/
+
+router.put('/helpers/:usersid', (req, res) => {
+	const usersid = req.params.usersid;
+
+	Users.removeHStatus(usersid)
+		.then(user => {
+			if (user) {
+				res.json(user);
+			} else {
+				res.status(404).json({ message: 'Could not find user with given id' });
+			}
+		})
+		.catch(err => {
+			res.status(500).json({ message: 'Failed to update user' });
+		});
+});
+/*
+-- add helper status
+    INSERT INTO Userroles (usersid, rolesid) VALUES ('', '');
+*/
+router.put('/helpers/:usersid', (req, res) => {
+	const usersid = req.params.usersid;
+	const updatedUser = req.body;
+
+	Users.addAsHelper(updatedUser)
+		.then(user => {
+			if (user) {
+				res.json(user);
+			} else {
+				res.status(404).json({ message: 'Could not find user with given id' });
+			}
+		})
+		.catch(err => {
+			res.status(500).json({ message: 'Failed to update user' });
+		});
 });
 
 module.exports = router;
