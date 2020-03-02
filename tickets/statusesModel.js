@@ -1,7 +1,7 @@
 const db = require('../data/dbConfig');
 
 module.exports = {
-	add,
+	addStatus,
 	find,
 	findBy,
 	findById,
@@ -17,8 +17,8 @@ function findBy(filter) {
 	return db('statuses').where(filter);
 }
 
-async function add(status) {
-	const [statusesid] = await db('statuses').insert(status, 'statusesid');
+async function addStatus(status) {
+	const [statusesid] = await db('statuses').insert({ statusname: status.status }, 'statusesid');
 	return findById(statusesid);
 }
 

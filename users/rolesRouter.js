@@ -33,7 +33,7 @@ router.get('/:rolesid', restricted, (req, res) => {
 router.post('/', restricted, (req, res) => {
 	const newRole = req.body;
 
-	Roles.add(newRole)
+	Roles.addRole(newRole)
 		.then(role => {
 			res.status(201).json(role);
 		})
