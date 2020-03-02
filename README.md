@@ -1,63 +1,98 @@
-# bw4
+# bw4 schema:  
 https://app.dbdesigner.net/designer/schema/308632
 
-| Statements | Branches | Functions | Lines |
-| -----------|----------|-----------|-------|
-| ![Statements](#statements# "Make me better!") | ![Branches](#branches# "Make me better!") | ![Functions](#functions# "Make me better!") | ![Lines](#lines# "Make me better!") |
+# BASE URL: **_ https://devdesk2eli.herokuapp.com/ _**
 
------------------------------------------------------------
-How to get a two:
------------------------------------------------------------
-- [X] Two user types: Student and Helper
+All endpoints have been tested via Postman.
 
-- [X] As a student I want to log in and have the ability to see tickets that are currently open for help.
+### Endpoints For Login / Registration
 
-- [X] As a student I want to be able to create a new help ticket with a title, description, what I've tried and a category (i.e. React).
+| Request Method | Endpoint         | Description                          |
+| :------------- | :--------------- | :----------------------------------- |
+| `POST`         | `/api/login`     | Logs user in and returns a token     |
+| `POST`         | `/api/register`  | creates a student user               |
 
-- [X] As a helper I want to be able to login and see a list of open tickets. 
+### Endpoints For Tickets
 
-- [X] As a helper I want to be able to assign a ticket to myself by clicking a "help student" button.
+| Request Method | Endpoint                           | Description                              |
+| :------------- | :--------------------------------- | :--------------------------------------- |
+| `POST`         | `/api/tickets`                     | adds a ticket                            |
+| `GET`          | `/api/tickets`                     | returns all tickets                      |
+| `GET`          | `/api/tickets/queue`               | returns all tickets in queue             |
+| `GET`          | `/api/tickets/resolved`            | returns all resolved tickets             |
+| `GET`          | `/api/tickets/students/:studentid` | returns all tickets from a given student |
+| `GET`          | `/api/tickets/helpers/:helperid`   | returns all tickets from a given helper  |
+| `GET`          | `/api/tickets/:ticketsid`          | returns a ticket                         |
+| `DELETE`       | `/api/tickets/:ticketsid`          | deletes a ticket                         |
+| `PUT`          | `/api/tickets/:ticketsid`          | updates a ticket                         |
 
-- [X] As a helper I want to be able to mark the ticket as "resolved", or re-assign the ticket back to the queue if I cannot resolve the ticket.
+### Endpoints For Users
 
-- [X] Student built and deployed a Web API following the REST architectural pattern with code that is clean and organized using the Express Framework. Student can demonstrate that a portion of the APIs were contributed individually.
+| Request Method | Endpoint         | Description                                               |
+| :------------- | :--------------- | :-------------------------------------------------------- |
+| `POST`         | `/api/users`     | adds a user                                               |
+| `GET`          | `/api/users/:id` | returns a user (usersid, email, name)                     |
+| `DELETE`       | `/api/users/:id` | deletes a user                                            |
+| `PUT`          | `/api/users/:id` | updates a user's basic information (usersid, email, name) |
 
-- [X] Student deployed an application with data persistence with a normalized data model that ensures data integrity and consistency. Student can demonstrate that they leveraged data persistence in their APIs that they contributed individually.
+### Endpoints For Statuses
 
-- [X] Student deployed a working application with authentication service that prevents access to endpoints that should not be public. Student can demonstrate they individually contributed to or leveraged authentication system.
+| Request Method | Endpoint            | Description                                       |
+| :------------- | :------------------ | :------------------------------------------------ |
+| `GET`          | `/api/statuses/:id` | returns all statuses (statusesid & status fields) |
+| `POST`         | `/api/statuses`     | adds a status                                     |
+| `DELETE`       | `/api/statuses/:id` | deletes a status                                  |
+| `PUT`          | `/api/statuses/:id` | updates a status                                  |
 
-- [X] Student deployed solution with automated unit tests for core business logic. Student can demonstrate tests they contributed individually.
-	https://learning.postman.com/docs/postman/api-documentation/documenting-your-api/
+### Endpoints For Roles
 
-- [X] Student's work demonstrates that all MVP features were built
+| Request Method | Endpoint         | Description                                   |
+| :------------- | :--------------- | :-------------------------------------------- |
+| `GET`          | `/api/roles/:id` | returns all roles (rolesid & rolename fields) |
+| `POST`         | `/api/roles`     | adds a role                                   |
+| `DELETE`       | `/api/roles/:id` | deletes a role                                |
+| `PUT`          | `/api/roles/:id` | updates a role                                |
 
-- [X] Student successfully collaborated with colleagues, and handled any problems or friction appropriately.
------------------------------------------------------------
-How to get a three:
------------------------------------------------------------
+** still working on endpoint for adding student users as helpers; but right now if they're already in the system, they can be both.
 
-- [ ] Build an integrated slack-bot that allows students to submit help tickets through slack. Allow the ability to subscribe to the Queue in slack to be notified if someone opens a ticket.
-	Slack action to create ticket -- > send from Slack API to our API
-	On ticket creation or ticket status change, send notification to slack api
-	Slack API notifies Slackbot that there's a new ticket/status change
-	Slackbot receives that notification and notifies subscriber/user
-	https://zapier.com/blog/how-to-build-chat-bot/
+#### Tickets Schema
 
-- [X] Make it so a user can be both a student and a helper.
+| field       | data type        | metadata                                            |
+| :---------- | :--------------- | :-------------------------------------------------- |
+| ticketsid   | unsigned integer | primary key, auto-increments, generated by database |
+| statusesid  | unsigned integer | foreign key referencing id in statuses table        |
+| helperid    | unsigned integer | foreign key referencing id in users table           |
+| studentid   | unsigned integer | foreign key referencing id in users table           |
+| title       | string           | required                                            |
+| description | string           | required                                            |
+| category    | string           | required                                            |
 
-- [X] The project has end to end tests using a test database.
-	https://learning.postman.com/docs/postman/api-documentation/documenting-your-api/
+#### Users Schema
 
-- [X] Student added authorization and authentication services.
+| field    | data type        | metadata                                               |
+| :------- | :--------------- | :--------------------------------------------------    |
+| usersid  | unsigned integer | primary key, auto-increments, generated by database    |
+| name     | string           | required,                                              |
+| password | string           | required                                               |
+| email    | string           | required, unique                                       |
 
-- [X] Student migrated from SQLite3 to use a server RDBMS, like Postgres or MySQL and incorporated seeding scripts in their solution.
+#### Statuses Schema
 
-- [X] Student incorporated services interfaces and appropriate repositories for code reuse and deployed the API to a hosting platform.
+| field      | data type        | metadata                                             |
+| :--------  | :--------------- | :--------------------------------------------------- |
+| statusesid | unsigned integer | primary key, auto-increments, generated by database  |
+| status     | string           | required, string, unique                             |
 
-- [X] The API is configured to dynamically load configuration and secrets using environment variables.
+#### Userroles Schema
 
-- [X] 2 + student helped others collaborate, smoothed out conflicts, and significantly contributed to marketing/explaining the project to stake holders beyond the team
+| field       | data type        | metadata                                            |
+| :---------- | :--------------- | :-------------------------------------------------- |
+| usersid     | unsigned integer | primary foreign key referencing id in users table   |
+| rolesid     | unsigned integer | primary foreign key referencing id in roles table   |
 
-- [X] Student's work demonstrates that all MVP features were built and the student went above and beyond the project.
+### Roles Schema
 
------------------------------------------------------------
+| field    | data type        | metadata                                               |
+| :------  | :--------------- | :--------------------------------------------------    |
+| rolesid  | unsigned integer | primary key, auto-increments, generated by database    |
+| rolename | string           | required, string, unique                               |
