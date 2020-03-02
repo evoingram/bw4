@@ -32,7 +32,7 @@ router.get('/:id', restricted, (req, res) => {
 // create status
 
 router.post('/', restricted, (req, res) => {
-	const newStatus = req.body;
+	const newStatus = req.body.status;
 
 	Statuses.addStatus(newStatus)
 		.then(status => {
