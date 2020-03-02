@@ -30,7 +30,7 @@ function findHelpers() {
 		.select('usersid', 'name', 'email')
 		.join('userroles', 'userroles.usersid', 'users.usersid')
 		.join('roles', 'roles.rolesid', 'userroles.rolesid')
-		.where({ 'roles.rolename': 'helper' });
+		.where({ 'roles.rolesid': 1 });
 }
 
 /*
@@ -47,7 +47,7 @@ function findStudents() {
 		.select('usersid', 'name', 'email')
 		.join('userroles', 'userroles.usersid', 'users.usersid')
 		.join('roles', 'roles.rolesid', 'userroles.rolesid')
-		.where({ 'roles.rolename': 'student' });
+		.where({ 'roles.rolesid': 2 });
 }
 
 /*
