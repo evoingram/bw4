@@ -31,7 +31,7 @@ function findById(rolesid) {
 
 function update(rolesid, updatedRolename) {
 	return db('roles')
-		.where('rolesid', Number(rolesid))
+		.where({ rolesid: rolesid })
 		.update({ rolename: updatedRolename });
 }
 

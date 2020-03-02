@@ -53,7 +53,7 @@ router.put('/:rolesid', restricted, (req, res) => {
 			if (role) {
 				res.json(role);
 			} else {
-				res.status(404).json({ message: 'Could not find role with given id' });
+				res.status(404).json({ message: `Could not find role with given id ${rolesid}` });
 			}
 		})
 		.catch(err => {
