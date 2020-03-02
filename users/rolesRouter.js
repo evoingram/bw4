@@ -48,7 +48,7 @@ router.put('/:rolesid', restricted, (req, res) => {
 	const rolesid = req.params.rolesid;
 	const updatedRolename = req.body.rolename;
 
-	Roles.update(updatedRolename, rolesid)
+	Roles.updateRole(updatedRolename, rolesid)
 		.then(role => {
 			if (role) {
 				res.json(role);

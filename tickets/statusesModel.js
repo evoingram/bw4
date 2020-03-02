@@ -5,7 +5,7 @@ module.exports = {
 	find,
 	findBy,
 	findById,
-	update,
+	updateStatus,
 	remove
 };
 
@@ -29,7 +29,7 @@ function findById(statusesid) {
 		.first();
 }
 
-function update(statusesid, statusName) {
+function updateStatus(statusesid, statusName) {
 	return db('statuses')
 		.where('statusesid', Number(statusesid))
 		.update({ status: statusName });

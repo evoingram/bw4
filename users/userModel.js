@@ -10,7 +10,7 @@ module.exports = {
 	findHStudents,
 	addAsHelper,
 	removeHStatus,
-	update,
+	updateUser,
 	remove
 };
 
@@ -102,7 +102,7 @@ function findById(usersid) {
     UPDATE Users.email = "" WHERE Users.usersid="";
     UPDATE Users.name = "" WHERE Users.usersid="";
 */
-function update(usersid, user) {
+function updateUser(usersid, user) {
 	return db('users')
 		.where('usersid', Number(usersid))
 		.update(user);
