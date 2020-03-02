@@ -34,7 +34,7 @@ router.get('/:id', restricted, (req, res) => {
 router.post('/', restricted, (req, res) => {
 	const newStatus = req.body;
 
-	Statuses.add(newStatus)
+	Statuses.addStatus(newStatus)
 		.then(status => {
 			res.status(201).json(status);
 		})

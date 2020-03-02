@@ -1,7 +1,7 @@
 const db = require('../data/dbConfig');
 
 module.exports = {
-	add,
+	addRole,
 	find,
 	findBy,
 	findById,
@@ -17,8 +17,8 @@ function findBy(filter) {
 	return db('roles').where(filter);
 }
 
-async function add(role) {
-	const [rolesid] = await db('roles').insert(role, 'rolesid');
+async function addRole(role) {
+	const [rolesid] = await db('roles').insert({ rolename: role.rolename }, 'rolesid');
 	return findById(rolesid);
 }
 
