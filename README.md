@@ -1,5 +1,4 @@
-# bw4 schema:  
-https://app.dbdesigner.net/designer/schema/308632
+# bw4 schema:  https://app.dbdesigner.net/designer/schema/308632
 
 # BASE URL: **_ https://devdesk2eli.herokuapp.com/ _**
 
