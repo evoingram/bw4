@@ -29,10 +29,10 @@ function findById(rolesid) {
 		.first();
 }
 
-function update(rolesid, role) {
+function update(rolesid, updatedRolename) {
 	return db('roles')
 		.where('rolesid', Number(rolesid))
-		.update(role);
+		.update({ rolename: updatedRolename });
 }
 
 function remove(rolesid) {
