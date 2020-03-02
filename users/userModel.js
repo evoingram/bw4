@@ -112,7 +112,7 @@ function updateUser(usersid, user) {
 */
 async function removeHStatus(rolesid, usersid) {
 	[usersid] = await db('userroles')
-		.where('usersid', { usersid: Number(usersid), rolesid: rolesid })
+		.where({ usersid: Number(usersid), rolesid: rolesid })
 		.delete();
 	return findById(usersid);
 }
