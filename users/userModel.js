@@ -112,7 +112,10 @@ function updateUser(usersid, user) {
 */
 async function removeHStatus(usersid) {
 	[usersid] = await db('userroles')
-		.where({ usersid: Number(usersid), rolesid: 1 })
+		.where({
+			'userroles.usersid': Number(usersid),
+			'userroles.rolesid': 1
+		})
 		.delete();
 	return findById(usersid);
 }
@@ -123,7 +126,7 @@ async function removeHStatus(usersid) {
 */
 
 async function addAsHelper(usersid, rolesid) {
-	const [role] = await db('userroles').insert({ usersid: usersid, rolesid: rolesid });
+	const [role] = await db('userroles').insert({ 'userroles.usersid': usersid, 'userroles.rolesid': rolesid });
 	return findById(role);
 }
 
