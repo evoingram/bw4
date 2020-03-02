@@ -1,6 +1,7 @@
 const debug = require('debug')('slash-command-template:ticket');
 const api = require('./api');
 const payloads = require('./payloads');
+const Tickets = require('./ticketsModel.js');
 
 /*
  *  Send ticket creation confirmation via
@@ -16,7 +17,7 @@ const sendConfirmation = async ticket => {
 		channel_id: channel.channel.id,
 		title: ticket.title,
 		description: ticket.description,
-		urgency: ticket.urgency
+		category: ticket.category
 	});
 
 	let result = await api.callAPIMethod('chat.postMessage', message);
@@ -36,10 +37,8 @@ const create = async (userId, view) => {
 		userId,
 		userEmail: result.user.profile.email,
 		title: values.title_block.title.value,
-		description: values.description_block.description.value || '_empty_',
-		urgency:
-			(values.urgency_block.urgency.selected_option && values.urgency_block.urgency.selected_option.text.text) ||
-			'not assigned'
+		description: values.description_block.description.value,
+		category: values.category_block.title.value
 	});
 };
 
