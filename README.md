@@ -2,6 +2,8 @@
 
 # BASE URL: **_ https://devdesk2eli.herokuapp.com/ _**
 
+# PM Documentation: **_ https://documenter.getpostman.com/view/6401823/SzKbLvH5?version=latest#13325605-4e44-4804-8593-4c9acbb0e929 _**
+
 All endpoints have been tested via Postman.
 
 ### Endpoints For Login / Registration
