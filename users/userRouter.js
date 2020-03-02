@@ -62,7 +62,7 @@ router.put('/:usersid', (req, res) => {
 			if (user) {
 				res.json(user);
 			} else {
-				res.status(404).json({ message: 'Could not find user with given id' });
+				res.status(404).json({ message: `Could not find user with given id ${usersid}` });
 			}
 		})
 		.catch(err => {
