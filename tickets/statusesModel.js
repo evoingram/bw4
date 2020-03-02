@@ -29,10 +29,10 @@ function findById(statusesid) {
 		.first();
 }
 
-function update(statusesid, status) {
+function update(statusesid, statusName) {
 	return db('statuses')
 		.where('statusesid', Number(statusesid))
-		.update(status);
+		.update({ status: statusName });
 }
 
 function remove(statusesid) {
