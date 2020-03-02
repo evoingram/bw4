@@ -155,7 +155,7 @@ router.put('/:ticketsid', restricted, (req, res) => {
 	const ticketStatus = req.body.status;
 	const updatedTicket = { helperid: helperid, status: ticketStatus };
 
-	Tickets.update(updatedTicket, ticketsid)
+	Tickets.updateTicket(ticketsid, updatedTicket)
 		.then(ticket => {
 			if (ticket) {
 				res.json(ticket);
