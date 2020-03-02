@@ -28,6 +28,7 @@ function find() {
 function findHelpers() {
 	return db('users')
 		.select('usersid', 'name', 'email')
+		.from('users')
 		.join('userroles', 'userroles.usersid', 'users.usersid')
 		.where({ 'userroles.rolesid': 1 });
 }
@@ -44,6 +45,7 @@ function findHelpers() {
 function findStudents() {
 	return db('users')
 		.select('usersid', 'name', 'email')
+		.from('users')
 		.join('userroles', 'userroles.usersid', 'users.usersid')
 		.where({ 'userroles.rolesid': 2 });
 }
@@ -65,11 +67,13 @@ function findStudents() {
 function findHStudents() {
 	return db('users')
 		.select('usersid', 'name', 'email')
+		.from('users')
 		.join('userroles', 'userroles.usersid', 'users.usersid')
 		.where({ 'userroles.rolesid': 2 })
 		.union(function() {
 			db('users')
 				.select('usersid', 'name', 'email')
+				.from('users')
 				.join('userroles', 'userroles.usersid', 'users.usersid')
 				.where({ 'roles.rolesid': 1 });
 		});
