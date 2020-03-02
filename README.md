@@ -1,5 +1,4 @@
-# bw4 schema:  
-https://app.dbdesigner.net/designer/schema/308632
+# bw4 schema:  https://app.dbdesigner.net/designer/schema/308632
 
 # BASE URL: **_ https://devdesk2eli.herokuapp.com/ _**
 
@@ -16,13 +15,13 @@ All endpoints have been tested via Postman.
 
 | Request Method | Endpoint                           | Description                              |
 | :------------- | :--------------------------------- | :--------------------------------------- |
-| `POST`         | `/api/tickets`                     | adds a ticket                            |
 | `GET`          | `/api/tickets`                     | returns all tickets                      |
 | `GET`          | `/api/tickets/queue`               | returns all tickets in queue             |
 | `GET`          | `/api/tickets/resolved`            | returns all resolved tickets             |
 | `GET`          | `/api/tickets/students/:studentid` | returns all tickets from a given student |
 | `GET`          | `/api/tickets/helpers/:helperid`   | returns all tickets from a given helper  |
 | `GET`          | `/api/tickets/:ticketsid`          | returns a ticket                         |
+| `POST`         | `/api/tickets`                     | adds a ticket                            |
 | `DELETE`       | `/api/tickets/:ticketsid`          | deletes a ticket                         |
 | `PUT`          | `/api/tickets/:ticketsid`          | updates a ticket                         |
 
@@ -30,8 +29,8 @@ All endpoints have been tested via Postman.
 
 | Request Method | Endpoint         | Description                                               |
 | :------------- | :--------------- | :-------------------------------------------------------- |
-| `POST`         | `/api/users`     | adds a user                                               |
 | `GET`          | `/api/users/:id` | returns a user (usersid, email, name)                     |
+| `POST`         | `/api/users`     | adds a user                                               |
 | `DELETE`       | `/api/users/:id` | deletes a user                                            |
 | `PUT`          | `/api/users/:id` | updates a user's basic information (usersid, email, name) |
 
@@ -53,7 +52,7 @@ All endpoints have been tested via Postman.
 | `DELETE`       | `/api/roles/:id` | deletes a role                                |
 | `PUT`          | `/api/roles/:id` | updates a role                                |
 
-** still working on endpoint for adding student users as helpers; but right now if they're already in the system, they can be both.
+** still working on endpoint for adding/removing student users as helpers; but right now if they're already in the system, they can be both.
 
 #### Tickets Schema
 
@@ -90,7 +89,7 @@ All endpoints have been tested via Postman.
 | usersid     | unsigned integer | primary foreign key referencing id in users table   |
 | rolesid     | unsigned integer | primary foreign key referencing id in roles table   |
 
-### Roles Schema
+#### Roles Schema
 
 | field    | data type        | metadata                                               |
 | :------  | :--------------- | :--------------------------------------------------    |
