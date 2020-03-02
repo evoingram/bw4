@@ -29,8 +29,7 @@ function findHelpers() {
 	return db('users')
 		.select('usersid', 'name', 'email')
 		.join('userroles', 'userroles.usersid', 'users.usersid')
-		.join('roles', 'roles.rolesid', 'userroles.rolesid')
-		.where({ 'roles.rolesid': 1 });
+		.where({ 'userroles.rolesid': 1 });
 }
 
 /*
@@ -46,8 +45,7 @@ function findStudents() {
 	return db('users')
 		.select('usersid', 'name', 'email')
 		.join('userroles', 'userroles.usersid', 'users.usersid')
-		.join('roles', 'roles.rolesid', 'userroles.rolesid')
-		.where({ 'roles.rolesid': 2 });
+		.where({ 'userroles.rolesid': 2 });
 }
 
 /*
@@ -68,15 +66,12 @@ function findHStudents() {
 	return db('users')
 		.select('usersid', 'name', 'email')
 		.join('userroles', 'userroles.usersid', 'users.usersid')
-		.join('roles', 'roles.rolesid', 'userroles.rolesid')
-		.where({ 'roles.rolename': 'student' })
+		.where({ 'userroles.rolesid': 2 })
 		.union(function() {
-			this.select('*')
-				.from('users')
+			db('users')
 				.select('usersid', 'name', 'email')
 				.join('userroles', 'userroles.usersid', 'users.usersid')
-				.join('roles', 'roles.rolesid', 'userroles.rolesid')
-				.where({ 'roles.rolename': 'helper' });
+				.where({ 'roles.rolesid': 1 });
 		});
 }
 
