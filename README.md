@@ -36,7 +36,7 @@ How to get a two:
 How to get a three:
 -----------------------------------------------------------
 
-- [ ] Build an integrated slack-bot that allows students to submit help tickets through slack. Allow the ability to subscribe to the Queue in slack to be notified if someone opens a ticket.
+- [X] Build an integrated slack-bot that allows students to submit help tickets through slack. Allow the ability to subscribe to the Queue in slack to be notified if someone opens a ticket.
 	Slack action to create ticket -- > send from Slack API to our API
 	On ticket creation or ticket status change, send notification to slack api
 	Slack API notifies Slackbot that there's a new ticket/status change
@@ -45,7 +45,7 @@ How to get a three:
 
 - [X] Make it so a user can be both a student and a helper.
 
-- [ ] The project has end to end tests using a test database.
+- [X] The project has end to end tests using a test database.
 	https://learning.postman.com/docs/postman/api-documentation/documenting-your-api/
 
 - [X] Student added authorization and authentication services. 
