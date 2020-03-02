@@ -32,7 +32,7 @@ function findById(statusesid) {
 function updateStatus(statusesid, statusName) {
 	return db('statuses')
 		.where('statusesid', Number(statusesid))
-		.update({ status: statusName });
+		.update(statusName);
 }
 
 function remove(statusesid) {
