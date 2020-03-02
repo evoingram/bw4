@@ -126,12 +126,12 @@ router.delete('/:ticketsid', restricted, (req, res) => {
 router.post('/', restricted, (req, res) => {
 	const newTicket = req.body;
 
-	Tickets.add(newTicket)
+	Tickets.addTicket(newTicket)
 		.then(ticket => {
 			res.status(201).json(ticket);
 		})
 		.catch(err => {
-			res.status(500).json({ message: 'Failed to create new ticket' });
+			res.status(500).json({ message: `Failed to create new ticket:  ${err}` });
 		});
 });
 
