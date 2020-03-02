@@ -48,7 +48,7 @@ function findBy(filter) {
 // INSERT INTO Tickets (statusesid, studentid, title, description, category) VALUES ("", "", "", "", "");
 
 async function add(ticket) {
-	const [ticketsid] = await db('tickets').insert(ticket);
+	const [ticketsid] = await db('tickets').insert(ticket, 'ticketsid');
 	return findById(ticketsid);
 }
 

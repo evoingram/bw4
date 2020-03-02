@@ -18,7 +18,7 @@ function findBy(filter) {
 }
 
 async function add(role) {
-	const [rolesid] = await db('roles').insert(role);
+	const [rolesid] = await db('roles').insert(role, 'rolesid');
 	return findById(rolesid);
 }
 
