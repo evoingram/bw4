@@ -110,9 +110,9 @@ function updateUser(usersid, user) {
 -- remove helper status
     DELETE FROM Userroles where Userroles.usersid='' && WHERE Userroles.rolesid='';
 */
-async function removeHStatus(usersid) {
+async function removeHStatus(rolesid, usersid) {
 	[usersid] = await db('userroles')
-		.where('usersid', Number(usersid))
+		.where('usersid', { usersid: Number(usersid), rolesid: rolesid })
 		.delete();
 	return findById(usersid);
 }
@@ -122,8 +122,8 @@ async function removeHStatus(usersid) {
     INSERT INTO Userroles (usersid, rolesid) VALUES ('', '');
 */
 
-async function addAsHelper(userRole) {
-	const [rolesid] = await db('userroles').insert(userRole);
+async function addAsHelper(rolesid, usersid) {
+	const [rolesid] = await db('userroles').insert({ usersid: usersid, rolesid: rolesid });
 	return findById(rolesid);
 }
 
