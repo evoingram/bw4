@@ -149,7 +149,7 @@ router.delete('/helpers/:usersid', (req, res) => {
 */
 router.post('/helpers/:usersid', (req, res) => {
 	const usersid = req.params.usersid;
-	const rolesid = req.body.rolesid;
+	const rolesid = 1;
 
 	Users.addAsHelper(rolesid, usersid)
 		.then(user => {
@@ -170,7 +170,7 @@ router.post('/helpers/:usersid', (req, res) => {
 */
 router.post('/students/:usersid', (req, res) => {
 	const usersid = req.params.usersid;
-	const rolesid = req.body.rolesid;
+	const rolesid = 2;
 
 	Users.addAsHelper(usersid, rolesid)
 		.then(user => {
