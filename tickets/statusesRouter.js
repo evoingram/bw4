@@ -49,7 +49,7 @@ router.put('/:statusesid', restricted, (req, res) => {
 	const statusesid = req.params.statusesid;
 	const updatedStatus = { status: req.body.status };
 
-	Statuses.update(statusesid, updatedStatus)
+	Statuses.updateStatus(statusesid, updatedStatus)
 		.then(status => {
 			if (status) {
 				res.json(status);
