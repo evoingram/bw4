@@ -24,14 +24,14 @@ How to get a two:
 
 - [X] Student deployed an application with data persistence with a normalized data model that ensures data integrity and consistency. Student can demonstrate that they leveraged data persistence in their APIs that they contributed individually.
 
-- [X] Student deployed a working application with authentication service that prevents access to endpoints that should not be public. Student can demonstrate they individually contributed to or leveraged authentication system. 
+- [X] Student deployed a working application with authentication service that prevents access to endpoints that should not be public. Student can demonstrate they individually contributed to or leveraged authentication system.
 
 - [X] Student deployed solution with automated unit tests for core business logic. Student can demonstrate tests they contributed individually.
 	https://learning.postman.com/docs/postman/api-documentation/documenting-your-api/
 
 - [X] Student's work demonstrates that all MVP features were built
 
-- [X] Student successfully collaborated with colleagues, and handled any problems or friction appropriately
+- [X] Student successfully collaborated with colleagues, and handled any problems or friction appropriately.
 -----------------------------------------------------------
 How to get a three:
 -----------------------------------------------------------
