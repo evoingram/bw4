@@ -128,7 +128,7 @@ router.put('/:usersid', (req, res) => {
     DELETE FROM Userroles where Userroles.usersid='' && WHERE Userroles.rolesid='';
 */
 
-router.put('/helpers/:usersid', (req, res) => {
+router.delete('/helpers/:usersid', (req, res) => {
 	const usersid = req.params.usersid;
 
 	Users.removeHStatus(usersid)
@@ -147,7 +147,7 @@ router.put('/helpers/:usersid', (req, res) => {
 -- add helper status
     INSERT INTO Userroles (usersid, rolesid) VALUES ('', '');
 */
-router.put('/helpers/:usersid', (req, res) => {
+router.post('/helpers/:usersid', (req, res) => {
 	const usersid = req.params.usersid;
 	const rolesid = req.body.rolesid;
 
