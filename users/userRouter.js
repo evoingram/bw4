@@ -57,7 +57,7 @@ router.put('/:usersid', (req, res) => {
 	const usersid = req.params.usersid;
 	const user = req.body;
 
-	Users.updateUser(user, usersid)
+	Users.updateUser(usersid, user)
 		.then(user => {
 			if (user) {
 				res.json(user);

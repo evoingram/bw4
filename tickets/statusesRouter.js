@@ -47,9 +47,9 @@ router.post('/', restricted, (req, res) => {
 
 router.put('/:statusesid', restricted, (req, res) => {
 	const statusesid = req.params.statusesid;
-	const updatedStatus = req.body;
+	const updatedStatus = { status: req.body.status };
 
-	Statuses.update(updatedStatus, statusesid)
+	Statuses.update(statusesid, updatedStatus)
 		.then(status => {
 			if (status) {
 				res.json(status);
