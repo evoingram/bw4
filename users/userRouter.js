@@ -12,18 +12,72 @@ router.get('/', restricted, (req, res) => {
 		.catch(err => res.send(err));
 });
 
+/*
+    -- to view all helpers: 
+        SELECT * FROM Users 		
+        JOIN Userroles ON Userroles.usersid=Users.usersId
+        JOIN Roles ON Userroles.rolesid=Roles.rolesid
+		WHERE Roles.role='helper'
+		ORDER BY Users.usersid;
+*/
+
+router.get('/helpers', restricted, (req, res) => {
+	Users.findHelpers()
+		.then(helpers => {
+			res.status(200).json(helpers);
+		})
+		.catch(err => res.send(err));
+});
+/*
+    -- to view all students: 
+        SELECT * FROM Users 		
+        JOIN Userroles ON Userroles.usersid=Users.usersId
+        JOIN Roles ON Userroles.rolesid=Roles.rolesid
+		WHERE Roles.role='student'
+		ORDER BY Users.usersid;
+*/
+
+router.get('/students', restricted, (req, res) => {
+	Users.findStudents()
+		.then(students => {
+			res.status(200).json(students);
+		})
+		.catch(err => res.send(err));
+});
+/*
+    -- to view all students who are also helpers: 
+        SELECT * FROM Users 		
+        JOIN Userroles ON Userroles.usersid=Users.usersId
+        JOIN Roles ON Userroles.rolesid=Roles.rolesid
+		WHERE Roles.role='helper'
+        ORDER BY Users.usersid
+        UNION 
+        SELECT * FROM Users 		
+        JOIN Userroles ON Userroles.usersid=Users.usersId
+        JOIN Roles ON Userroles.rolesid=Roles.rolesid
+		WHERE Roles.role='student'
+        ORDER BY Users.usersid;
+*/
+router.get('/helperstudents', restricted, (req, res) => {
+	Users.findHStudents()
+		.then(hStudents => {
+			res.status(200).json(hStudents);
+		})
+		.catch(err => res.send(err));
+});
+
 // get individual user
-router.get('/:id', restricted, (req, res) => {
-	const id = req.params.id;
-	if (!id) {
-		res.status(404).json({ message: 'The user with the specified id does not exist.' });
+router.get('/:usersid', restricted, (req, res) => {
+	const usersid = req.params.usersid;
+	if (!usersid) {
+		res.status(404).json({ message: `The user with the specified ${usersid} does not exist.` });
 	} else {
-		Users.findById(id)
+		Users.findById(usersid)
 			.then(user => {
 				res.status(201).json(user);
 			})
 			.catch(err => {
-				res.status(500).json({ message: 'The user information could not be retrieved.' });
+				res.status(500).json({ message: `The user information for ${usersid} could not be retrieved.` });
 			});
 	}
 });
@@ -33,17 +87,17 @@ router.get('/:id', restricted, (req, res) => {
 DELETE FROM Users where Users.usersid = '';
 */
 
-router.delete('/:id', restricted, (req, res) => {
-	const id = req.params.id;
-	if (!id) {
-		res.status(404).json({ message: 'The user with the specified ID does not exist.' });
+router.delete('/:usersid', restricted, (req, res) => {
+	const usersid = req.params.usersid;
+	if (!usersid) {
+		res.status(404).json({ message: `The user with the specified ID ${usersid} does not exist.` });
 	}
-	Users.remove(id)
+	Users.remove(usersid)
 		.then(user => {
 			res.json(user);
 		})
 		.catch(err => {
-			res.status(500).json({ message: 'The user could not be removed' });
+			res.status(500).json({ message: `The user ${usersid} could not be removed` });
 		});
 });
 
@@ -66,62 +120,8 @@ router.put('/:usersid', (req, res) => {
 			}
 		})
 		.catch(err => {
-			res.status(500).json({ message: 'Failed to update user' });
+			res.status(500).json({ message: `Failed to update user ${usersid}` });
 		});
-});
-
-/*
-    -- to view all helpers: 
-        SELECT * FROM Users 		
-        JOIN Userroles ON Userroles.usersid=Users.usersId
-        JOIN Roles ON Userroles.rolesid=Roles.rolesid
-		WHERE Roles.role='helper'
-		ORDER BY Users.usersid;
-*/
-
-router.get('/helpers', restricted, (req, res) => {
-	Users.findHelpers()
-		.then(users => {
-			res.status(200).json(users);
-		})
-		.catch(err => res.send(err));
-});
-/*
-    -- to view all students: 
-        SELECT * FROM Users 		
-        JOIN Userroles ON Userroles.usersid=Users.usersId
-        JOIN Roles ON Userroles.rolesid=Roles.rolesid
-		WHERE Roles.role='student'
-		ORDER BY Users.usersid;
-*/
-
-router.get('/students', restricted, (req, res) => {
-	Users.findStudents()
-		.then(users => {
-			res.status(200).json(users);
-		})
-		.catch(err => res.send(err));
-});
-/*
-    -- to view all students who are also helpers: 
-        SELECT * FROM Users 		
-        JOIN Userroles ON Userroles.usersid=Users.usersId
-        JOIN Roles ON Userroles.rolesid=Roles.rolesid
-		WHERE Roles.role='helper'
-        ORDER BY Users.usersid
-        UNION 
-        SELECT * FROM Users 		
-        JOIN Userroles ON Userroles.usersid=Users.usersId
-        JOIN Roles ON Userroles.rolesid=Roles.rolesid
-		WHERE Roles.role='student'
-        ORDER BY Users.usersid;
-*/
-router.get('/helperstudents', restricted, (req, res) => {
-	Users.findHStudents()
-		.then(users => {
-			res.status(200).json(users);
-		})
-		.catch(err => res.send(err));
 });
 /*
 -- remove helper status
@@ -136,11 +136,11 @@ router.put('/helpers/:usersid', (req, res) => {
 			if (user) {
 				res.json(user);
 			} else {
-				res.status(404).json({ message: 'Could not find user with given id' });
+				res.status(404).json({ message: `Could not find user with given id ${usersid}` });
 			}
 		})
 		.catch(err => {
-			res.status(500).json({ message: 'Failed to update user' });
+			res.status(500).json({ message: `Failed to update user ${usersid}` });
 		});
 });
 /*
@@ -156,11 +156,11 @@ router.put('/helpers/:usersid', (req, res) => {
 			if (user) {
 				res.json(user);
 			} else {
-				res.status(404).json({ message: 'Could not find user with given id' });
+				res.status(404).json({ message: `Could not find user with given id ${usersid}` });
 			}
 		})
 		.catch(err => {
-			res.status(500).json({ message: 'Failed to update user' });
+			res.status(500).json({ message: `Failed to update user ${usersid}` });
 		});
 });
 
