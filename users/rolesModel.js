@@ -5,7 +5,7 @@ module.exports = {
 	find,
 	findBy,
 	findById,
-	update,
+	updateRole,
 	remove
 };
 
@@ -29,9 +29,9 @@ function findById(rolesid) {
 		.first();
 }
 
-function update(rolesid, updatedRolename) {
+function updateRole(rolesid, updatedRolename) {
 	return db('roles')
-		.where({ rolesid: rolesid })
+		.where('rolesid', Number(rolesid))
 		.update({ rolename: updatedRolename });
 }
 
