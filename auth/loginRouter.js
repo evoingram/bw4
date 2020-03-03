@@ -16,6 +16,8 @@ router.post('/', (req, res) => {
 
 				res.status(200).json({
 					email: user.email,
+					usersid: user.usersid,
+					name: user.name,
 					token
 				});
 			} else {
