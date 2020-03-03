@@ -1,5 +1,3 @@
-(I wrote a React app for this same project in a previous build week with a localhost API and recently refactored it to use this API instead.  It is live @ https://devdeskelireact.now.sh/)
-
 # [BASE API URL](https://devdesk2eli.herokuapp.com/)
 
 # [BW4 SCHEMA](https://dbdesigner.page.link/urgi8jQCzNMRBtiX8)
@@ -39,7 +37,6 @@ All endpoints have been tested via Postman.
 | `GET`          | `/api/users/helperstudents`    | returns list of helpers who are also students             |
 | `POST`         | `/api/users/students/:usersid` | adds a user as a student                                  |
 | `POST`         | `/api/users/helpers/:usersid`  | adds a user as a helper                                   |
-| `POST`         | `/api/users`                   | adds a user                                               |
 | `POST`         | `/api/users`                   | adds a user                                               |
 | `DELETE`       | `/api/users/:usersid`          | deletes a user                                            |
 | `PUT`          | `/api/users/:usersid`          | updates a user's basic information (usersid, email, name) |
