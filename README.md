@@ -29,12 +29,16 @@ All endpoints have been tested via Postman.
 
 ### Endpoints For Users
 
-| Request Method | Endpoint         | Description                                               |
-| :------------- | :--------------- | :-------------------------------------------------------- |
-| `GET`          | `/api/users/:id` | returns a user (usersid, email, name)                     |
-| `POST`         | `/api/users`     | adds a user                                               |
-| `DELETE`       | `/api/users/:id` | deletes a user                                            |
-| `PUT`          | `/api/users/:id` | updates a user's basic information (usersid, email, name) |
+| Request Method | Endpoint                       | Description                                               |
+| :------------- | :----------------------------- | :-------------------------------------------------------- |
+| `GET`          | `/api/users/:usersid`          | returns a user (usersid, email, name)                     |
+| `POST`         | `/api/users/students/:usersid` | adds a user as a student                                  |
+| `POST`         | `/api/users/helpers/:usersid`  | adds a user as a helper                                   |
+| `POST`         | `/api/users`                   | adds a user                                               |
+| `POST`         | `/api/users`                   | adds a user                                               |
+| `DELETE`       | `/api/users/:usersid`          | deletes a user                                            |
+| `PUT`          | `/api/users/:usersid`          | updates a user's basic information (usersid, email, name) |
+
 
 ### Endpoints For Statuses
 
@@ -53,8 +57,6 @@ All endpoints have been tested via Postman.
 | `POST`         | `/api/roles`     | adds a role                                   |
 | `DELETE`       | `/api/roles/:id` | deletes a role                                |
 | `PUT`          | `/api/roles/:id` | updates a role                                |
-
-** still working on endpoint for adding/removing student users as helpers; but right now if they're already in the system, they can be both.
 
 
 #### Tickets Schema
