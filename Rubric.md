@@ -5,7 +5,7 @@ https://app.dbdesigner.net/designer/schema/308632
 | -----------|----------|-----------|-------|
 | ![Statements](#bw4/badges/badge-branches.svg# "Make me better!") | ![Branches](#branches# "Make me better!") | ![Functions](#functions# "Make me better!") | ![Lines](#lines# "Make me better!") |
 
-![coverage-badge-red](bw4/badges/badge-branches.svg)
+![coverage-badge-red](badges/badge-branches.svg)
 
 
 -----------------------------------------------------------
