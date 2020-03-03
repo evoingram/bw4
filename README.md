@@ -34,7 +34,6 @@ All endpoints have been tested via Postman.
 | `GET`          | `/api/users/:usersid`          | returns a user (usersid, email, name)                     |
 | `GET`          | `/api/users/helpers`           | returns list of helpers                                   |
 | `GET`          | `/api/users/students`          | returns list of students                                  |
-| `GET`          | `/api/users/helperstudents`    | returns list of helpers who are also students             |
 | `POST`         | `/api/users/students/:usersid` | adds a user as a student                                  |
 | `POST`         | `/api/users/helpers/:usersid`  | adds a user as a helper                                   |
 | `POST`         | `/api/users`                   | adds a user                                               |
