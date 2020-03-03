@@ -29,6 +29,7 @@ exports.up = function(knex) {
 				.unique();
 		})
 		.createTable('userroles', users => {
+			users.increments('urid');
 			users
 				.integer('usersid')
 				.unsigned()

@@ -129,7 +129,7 @@ async function removeHStatus(usersid) {
 */
 
 async function addAsHelper(usersid, rolesid) {
-	const [role] = await db('userroles').insert({ 'userroles.usersid': usersid, 'userroles.rolesid': rolesid });
+	const [role] = await db('userroles').insert({ 'userroles.usersid': usersid, 'userroles.rolesid': rolesid }, 'urid');
 	return findById(role);
 }
 
