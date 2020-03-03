@@ -151,7 +151,7 @@ router.post('/helpers/:usersid', (req, res) => {
 	const usersid = req.params.usersid;
 	const rolesid = 1;
 
-	Users.addAsHelper(rolesid, usersid)
+	Users.addAsHelper(usersid, rolesid)
 		.then(user => {
 			if (user) {
 				res.json(user);
@@ -160,7 +160,7 @@ router.post('/helpers/:usersid', (req, res) => {
 			}
 		})
 		.catch(err => {
-			res.status(500).json({ message: `Failed to update user ${usersid}` });
+			res.status(500).json({ message: `Failed to update user ${usersid}:  ${err}` });
 		});
 });
 
@@ -181,7 +181,7 @@ router.post('/students/:usersid', (req, res) => {
 			}
 		})
 		.catch(err => {
-			res.status(500).json({ message: `Failed to update user ${usersid}` });
+			res.status(500).json({ message: `Failed to update user ${usersid}:  ${err}` });
 		});
 });
 module.exports = router;
