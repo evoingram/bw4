@@ -3,11 +3,9 @@ https://app.dbdesigner.net/designer/schema/308632
 
 | Statements | Branches | Functions | Lines |
 | -----------|----------|-----------|-------|
-| ![Statements](#statements# "Make me better!") | ![Branches](#branches# "Make me better!") | ![Functions](#functions# "Make me better!") | ![Lines](#lines# "Make me better!") |
+| ![Statements](#bw4/badges/badge-branches.svg# "Make me better!") | ![Branches](#branches# "Make me better!") | ![Functions](#functions# "Make me better!") | ![Lines](#lines# "Make me better!") |
 
-
-[coverage-badge-red]: https://www.github.com/evoingram/bw4/badges/badge-branches.svg
-
+![coverage-badge-red](bw4/badges/badge-branches.svg)
 
 
 -----------------------------------------------------------
