@@ -3,7 +3,7 @@ https://app.dbdesigner.net/designer/schema/308632
 
 | Statements | Branches | Functions | Lines |
 | -----------|----------|-----------|-------|
-| ![badge-statements](badges/badge-statements.svg) | ![badge-branches](badges/badges/badge-branches.svg) | ![badge-functions](badges/badge-functions.svg) | ![badge-lines](badges/badge-lines.svg) |
+| ![badge-statements](badges/badge-statements.svg) | ![badge-branches](badges/badge-branches.svg) | ![badge-functions](badges/badge-functions.svg) | ![badge-lines](badges/badge-lines.svg) |
 
 
 
