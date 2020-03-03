@@ -1,6 +1,8 @@
-# [BW4 SCHEMA](https://dbdesigner.page.link/urgi8jQCzNMRBtiX8)
+(I wrote a React app for this project in a previous build week with a localhost API and recently refactored it to use this API instead.  It is live @ https://devdeskelireact.now.sh/)
 
-# [BASE URL](https://devdesk2eli.herokuapp.com/)
+# [BASE API URL](https://devdesk2eli.herokuapp.com/)
+
+# [BW4 SCHEMA](https://dbdesigner.page.link/urgi8jQCzNMRBtiX8)
 
 # [POSTMAN DOCUMENTATION](https://documenter.getpostman.com/view/6401823/SzKbLvH5?version=latest#13325605-4e44-4804-8593-4c9acbb0e929)
 
