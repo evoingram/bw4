@@ -6,8 +6,6 @@ https://app.dbdesigner.net/designer/schema/308632
 | ![badge-statements](badges/badge-statements.svg) | ![badge-branches](badges/badge-branches.svg) | ![badge-functions](badges/badge-functions.svg) | ![badge-lines](badges/badge-lines.svg) |
 
 
-
-
 -----------------------------------------------------------
 How to get a two:
 -----------------------------------------------------------
