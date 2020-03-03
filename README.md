@@ -41,22 +41,22 @@ All endpoints have been tested via Postman.
 
 
 ### Endpoints For Statuses
-
-| Request Method | Endpoint            | Description                                       |
-| :------------- | :------------------ | :------------------------------------------------ |
-| `GET`          | `/api/statuses/:id` | returns all statuses (statusesid & status fields) |
-| `POST`         | `/api/statuses`     | adds a status                                     |
-| `DELETE`       | `/api/statuses/:id` | deletes a status                                  |
-| `PUT`          | `/api/statuses/:id` | updates a status                                  |
+ 
+| Request Method | Endpoint                    | Description                                       |
+| :------------- | :-------------------------- | :------------------------------------------------ |
+| `GET`          | `/api/statuses/:statusesid` | returns all statuses (statusesid & status fields) |
+| `POST`         | `/api/statuses`             | adds a status                                     |
+| `DELETE`       | `/api/statuses/:statusesid` | deletes a status                                  |
+| `PUT`          | `/api/statuses/:statusesid` | updates a status                                  |
 
 ### Endpoints For Roles
 
-| Request Method | Endpoint         | Description                                   |
-| :------------- | :--------------- | :-------------------------------------------- |
-| `GET`          | `/api/roles/:id` | returns all roles (rolesid & rolename fields) |
-| `POST`         | `/api/roles`     | adds a role                                   |
-| `DELETE`       | `/api/roles/:id` | deletes a role                                |
-| `PUT`          | `/api/roles/:id` | updates a role                                |
+| Request Method | Endpoint              | Description                                   |
+| :------------- | :-------------------- | :-------------------------------------------- |
+| `GET`          | `/api/roles/:rolesid` | returns all roles (rolesid & rolename fields) |
+| `POST`         | `/api/roles`          | adds a role                                   |
+| `DELETE`       | `/api/roles/:rolesid` | deletes a role                                |
+| `PUT`          | `/api/roles/:rolesid` | updates a role                                |
 
 
 #### Tickets Schema
