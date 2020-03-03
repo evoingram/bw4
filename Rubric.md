@@ -5,6 +5,7 @@ https://app.dbdesigner.net/designer/schema/308632
 | -----------|----------|-----------|-------|
 | ![Statements](#statements# "Make me better!") | ![Branches](#branches# "Make me better!") | ![Functions](#functions# "Make me better!") | ![Lines](#lines# "Make me better!") |
 
+[coverage-badge-red]: https://www.github.com/evoingram/bw4/badges/badge-branches.svg
 -----------------------------------------------------------
 How to get a two:
 -----------------------------------------------------------
