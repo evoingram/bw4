@@ -3,9 +3,9 @@ https://app.dbdesigner.net/designer/schema/308632
 
 | Statements | Branches | Functions | Lines |
 | -----------|----------|-----------|-------|
-| ![Statements](#bw4/badges/badge-branches.svg# "Make me better!") | ![Branches](#branches# "Make me better!") | ![Functions](#functions# "Make me better!") | ![Lines](#lines# "Make me better!") |
+| ![badge-statements](badges/badge-statements.svg) | ![badge-branches](badges/badges/badge-branches.svg) | ![badge-functions](badges/badge-functions.svg) | ![badge-lines](badges/badge-lines.svg) |
 
-![coverage-badge-red](badges/badge-branches.svg)
+
 
 
 -----------------------------------------------------------
