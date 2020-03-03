@@ -1,4 +1,4 @@
-(I wrote a React app for this project in a previous build week with a localhost API and recently refactored it to use this API instead.  It is live @ https://devdeskelireact.now.sh/)
+(I wrote a React app for this same project in a previous build week with a localhost API and recently refactored it to use this API instead.  It is live @ https://devdeskelireact.now.sh/)
 
 # [BASE API URL](https://devdesk2eli.herokuapp.com/)
 
