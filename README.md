@@ -1,6 +1,8 @@
-# bw4 schema:  https://app.dbdesigner.net/designer/schema/308632
+# [BW4 SCHEMA](https://app.dbdesigner.net/designer/schema/308632)
 
-# BASE URL: **_ https://devdesk2eli.herokuapp.com/ _**
+# [BASE URL](https://devdesk2eli.herokuapp.com/)
+
+# [POSTMAN DOCUMENTATION](https://documenter.getpostman.com/view/6401823/SzKbLvH5?version=latest#13325605-4e44-4804-8593-4c9acbb0e929)
 
 All endpoints have been tested via Postman.
 
