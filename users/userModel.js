@@ -35,6 +35,7 @@ function findHelpers() {
 }
 
 /*
+
     -- to view all students: 
         SELECT * FROM Users 		
         JOIN Userroles ON Userroles.usersid=Users.usersId

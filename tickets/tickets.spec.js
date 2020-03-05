@@ -233,53 +233,6 @@ describe('tickets router', function() {
 	});
 
 	/*
-    -- to view all students who are also helpers: 
-        SELECT * FROM Users 		
-        JOIN Userroles ON Userroles.usersid=Users.usersId
-        JOIN Roles ON Userroles.rolesid=Roles.rolesid
-		WHERE Roles.role='helper'
-        ORDER BY Users.usersid
-        UNION 
-        SELECT * FROM Users 		
-        JOIN Userroles ON Userroles.usersid=Users.usersId
-        JOIN Roles ON Userroles.rolesid=Roles.rolesid
-		WHERE Roles.role='student'
-        ORDER BY Users.usersid;
-*/
-	// router.get('/helperstudents', restricted, (req, res) => { Users.findHStudents()
-
-	describe('GET /api/users/helperstudents', function() {
-		it('should return 200 OK', function() {
-			return request(server)
-				.get('/api/users/helperstudents')
-				.then(res => {
-					expect(res.status).toBe(200);
-				});
-		});
-
-		it('should return users/helperstudents as the router value', function() {
-			return request(server)
-				.get('/api/users/helperstudents')
-				.then(res => {
-					expect(Array.isArray(res.body)).toBe(true);
-				});
-		});
-
-		it('should return JSON formatted body', function() {
-			return request(server)
-				.get('/api/users/helperstudents')
-				.then(res => {
-					expect(res.type).toMatch(/json/);
-				});
-		});
-
-		it('should return an array of users/helperstudents (async version)', async function() {
-			const res = await request(server).get('/api/users/helperstudents');
-
-			expect(Array.isArray(res.body)).toBe(true);
-		});
-	});
-	/*
     -- to view all students: 
         SELECT * FROM Users 		
         JOIN Userroles ON Userroles.usersid=Users.usersId
