@@ -19,7 +19,7 @@ router.post('/', (req, res) => {
 		Users.add(user)
 			.then(saved => {
 				Users.addAsHelper({ usersid: saved.usersid, rolesid: 2 }).then(response => {
-					console.log('added registered user as student');
+					res.status(201).json(response);
 				});
 
 				res.status(201).json({ usersid: saved.usersid, email: saved.email, name: saved.name, token: token });
