@@ -4,7 +4,7 @@
 
 # [POSTMAN DOCUMENTATION](https://documenter.getpostman.com/view/6401823/SzKbLvH5?version=latest#13325605-4e44-4804-8593-4c9acbb0e929)
 
-All endpoints have been tested via Postman.
+All endpoints have been tested via Postman.  I've also tested many of the endpoints via the official testing platform/method in Postman, past just making the request successfully in Postman via the 'tests' tab.
 
 ### Endpoints For Login / Registration
 
