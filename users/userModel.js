@@ -89,7 +89,8 @@ function findBy(filter) {
 
 async function add(user) {
 	const [usersid] = await db('users').insert(user, 'usersid');
-	return addAsHelper(usersid.usersid, 2);
+	addAsHelper(usersid.usersid, 2);
+	return findById(usersid);
 }
 
 function findById(usersid) {
