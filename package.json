@@ -20,7 +20,7 @@
 		"helmet": "^3.21.3",
 		"jest-coverage-badges": "^1.1.2",
 		"jsonwebtoken": "^8.5.1",
-		"knex": "^0.20.10",
+		"knex": "^2.4.0",
 		"knex-cleaner": "^1.3.0",
 		"pg": "^7.18.2",
     	"body-parser": "^1.17.1",
